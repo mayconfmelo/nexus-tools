@@ -1,7 +1,7 @@
 #let null = [#sym.zws#sym.zwnj#sym.zws#sym.zwnj#sym.zws]
 
 
-#let auto-value(
+#let auto-val(
   origin,
   replace,
 ) = {
