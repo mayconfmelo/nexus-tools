@@ -2,6 +2,11 @@
 
 <center>
 
+
+[![Tests](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml)
+[![Build](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml)
+[![Spellcheck](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml)
+
 </center>
 
 
