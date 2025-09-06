@@ -22,8 +22,8 @@ test which="":
 example:
   rm -r dev/example/ 2>/dev/null || true
   mkdir -p dev/example/
-  typst compile template/main.typ dev/example/doc.pdf
-  typst compile template/main.typ dev/example/page-{0p}.png
+  typst compile docs/example/main.typ dev/example/doc.pdf
+  typst compile docs/example/main.typ dev/example/page-{0p}.png
 
 # compile the manual.
 doc:
