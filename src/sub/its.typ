@@ -28,12 +28,14 @@
   return false
 }
 
-#let type-orig = type
+
 #let type(data, values) = {
-  if type-orig(values) != array {values = (values,)}
+  import "assets/orig.typ"
+  
+  if orig.type(values) != array {values = (values,)}
   
   for value in values {
-    if type-orig(data) == value {return true}
+    if orig.type(data) == value {return true}
   }
   return false
 }
