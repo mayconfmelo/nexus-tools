@@ -1,105 +1,3 @@
-/**
-= Command Arguments
-:arg:
-Defines and explains possible arguments/parameters (see `/tests/commands/arg/`).
-**/
-#let arg(
-  title, /// <- string <required>
-    /** `"name <- type | type -> type <required>"` \
-    Title data: A mandatory name identifier, followed by optional ASCII arrows
-    indicating input/output types, and a final `<required>` to define required
-    arguments. |**/
-  body
-) = context {
-  assert.ne(body, [], message: "#arg(body) should not be empty: " + title)
-  
-  // TODO: Allow other "required" texts — useful for other languages
-  let required = title.contains("<required>")
-  let output = false
-  let display = ""
-  let types = ()
-  let title = title
-  let body = body
-  let ignored = (none, "", "nothing")
-  let parts
-  let name
-  let width
-  
-  // Remove any <required> from title, if any
-  title = title.replace("<required>", "")
-  
-  if title.contains("<-") {display = "i"}
-  if title.contains("->") {display = display + "o"}
-  
-  parts = title.split(regex("<-|->"))
-  name = parts.at(0).trim() + " "
-  width = if display == "o" {" " + sym.arrow.r + " "} else {""}
-  width = measure(name + width).width + 2pt
-  
-  if name == "" {panic("Argument name required: " + title)}
-  
-  //Set types, if any
-  for part in parts.slice(1) {
-    part = part.replace(regex("\s*\|\s*"), "|").trim()
-    part = if part == "nothing" {(none,)} else {part.split("|")}
-    
-    types.push(part)
-  }
-  if types.len() > 2 {panic("There should be only one of each '<-' and '->' in " + title)}
-
-  // Show name as raw
-  if name.contains(regex("`.*`")) {name = eval(name, mode: "markup")}
-  else if type(name) == str {name = raw(name)}
-  
-  title = (strong(name) + " ",)
-  if display.contains("i") {
-    for type in types.at(0) {
-      if not ignored.contains(type) {
-        title.push(
-          box(
-            fill: luma(225),
-            inset: (x: 3pt, y: 0pt),
-            outset: (y: 3pt),
-            type
-          ) + " "
-        )
-      }
-    }
-  }
-  if display.contains("o") {
-    let n = if display.contains("i") {1} else {0}
-    
-    if not ignored.contains(types.at(n).at(0)) {title.push(sym.arrow.r + " ")}
-    
-    for type in types.at(n) {
-      if not ignored.contains(type) {
-        title.push(
-          box(
-            fill: luma(230),
-            inset: (x: 3pt, y: 0pt),
-            outset: (y: 3pt),
-            type
-          ) + " "
-        )
-      }
-    }
-  }
-  if required { title.push( box(width: 1fr, align(right)[(_required_)]) ) }
-  
-  if body != [] {body = pad(left: 1em, body)}
-  
-  block(
-    breakable: false,
-    fill: luma(245),
-    width: 100%,
-    outset: 5pt,
-    [
-      #par(hanging-indent: width, title.join())
-      #context v(-par.leading * 0.5)
-      #body
-    ]
-  )
-}
 
 
 /**
@@ -188,4 +86,30 @@ slug <- string
   
   //[#out]
   url(..out)
+}
+
+
+#let callout(
+  icon: "information-circle",
+  title: none,
+  fill: gray.lighten(85%),
+  fill-text: auto,
+  body,
+) = {
+  import "@preview/heroic:0.1.0": hi
+  
+  title = hi(icon, solid: false) + " " + if title != none {title + linebreak()}
+  fill-text = if fill-text == auto {()} else {(fill: fill-text)}
+  
+  set text(..fill-text)
+  
+  pad(
+    x: 1em,
+    block(
+      strong(title) + body,
+      fill: fill,
+      outset: (x: 1em * 0.45),
+      inset: (y: 1em * 0.45),
+    )
+  )
 }
