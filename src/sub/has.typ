@@ -31,17 +31,18 @@ values <- string | array of strings
 == Key Command
 :key: => #has.<name>(<capt>)
 
-Check if dictionary has a given key.
+Check if dictionary or module has a given key.
 
 data <- string
-  The dictionary itself.
+  The dictionary or module itself.
 
 values <- string | array of strings
   One or more key names.
 **/
 #let key(data, values) = {
-  assert.eq(type(data), dictionary)
+  assert(type(data) == dictionary or type(data) == module)
   
+  if type(data) == module {data = dictionary(data)}
   if type(values) != array {values = (values,)}
   
   for value in values {
@@ -54,17 +55,18 @@ values <- string | array of strings
 == Value Command
 :key: => #has.<name>(<capt>)
 
-Check if dictionary has a given value.
+Check if dictionary or module has a given value.
 
 data <- string
-  The dictionary itself.
+  The dictionary ir module itself.
 
 values <- string | array
   One or more values.
 **/
 #let value(data, values) = {
-  assert.eq(type(data), dictionary)
+  assert(type(data) == dictionary or type(data) == module)
   
+  if type(data) == module {data = dictionary(data)}
   if type(values) != array {values = (values,)}
   
   for value in values {
