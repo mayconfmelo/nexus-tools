@@ -69,3 +69,10 @@ my other projects' shared features.
   - `space()` checks if value function is `space`
   - `func()` checks if value function is one of the given functions
   - `type()` checks if value type is one of the given types
+
+### Internal Structure
+
+![YAML structure](tests/representation/out/1.png)
+
+This is a YAML representation of the package internal structure and all its
+features.
