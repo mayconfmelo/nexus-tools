@@ -15,5 +15,5 @@
 #assert.ne(get.null, ())
 #assert.ne(get.null, (:))
 
-// null value has a content type
-#assert.eq(type(get.null), content)
+// null value has a function type
+#assert.eq(type(get.null), function)

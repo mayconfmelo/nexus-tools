@@ -1,4 +1,4 @@
-#let null = [#sym.zws#sym.zwnj#sym.zws#sym.zwnj#sym.zws]
+#let null() = [#sym.zws#sym.zwnj#sym.zws#sym.zwnj#sym.zws]
 
 
 #let auto-val(
