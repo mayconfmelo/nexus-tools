@@ -30,10 +30,10 @@ my other projects' shared features.
 
 ## More Information
 
-- [Official manual](https://raw.githubusercontent.com/mayconfmelo/transl/refs/tags/1.1.0/docs/manual.pdf)
-- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/transl/refs/tags/1.1.0/docs/example.pdf)
-- [Example Typst code](https://github.com/mayconfmelo/transl/blob/1.1.0/template/main.typ)
-- [Changelog](https://github.com/mayconfmelo/transl/blob/main/changelog.md)
+- [Official manual](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/manual.pdf)
+- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/example.pdf)
+- [Example Typst code](https://github.com/mayconfmelo/toolbox/blob/0.1.0/template/main.typ)
+- [Changelog](https://github.com/mayconfmelo/toolbox/blob/main/changelog.md)
 - [Development setup](https://github.com/mayconfmelo/toolbox/blob/main/docs/dev.md)
 
 
@@ -53,7 +53,7 @@ my other projects' shared features.
   - `pkg()` adds a general code package URL
   - `callout()` adds an customizable callout box
 - `#get` expands Typst values
-  - `null` is a special content-typed null value
+  - `null` is a alternative to `none` default values
   - `auto-val()` substitutes `auto` values
 - `#has` provides attribute checks for different types
   - `field()` checks if a content has a given field
