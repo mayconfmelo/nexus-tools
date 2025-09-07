@@ -1,22 +1,21 @@
-
-
 /**
-= Command URL
+= Components Namespace
 ```typ
-#url(url, id, text)
+#import "@preview/toolbox: 0.1.0": comp
 ```
 
+== URL Command
+:url: => #comp.<name>(<capt>)
+
 Creates a paper-friendly link, attached to a footnote containing the URL itself
-for readability when printed.
+to ensure readability when printed.
 
 url <- string | label <required>
-  URL set to link and shown in footnote.
+  URL set as link and shown in footnote.
 
-id <- label
-  Label set to the footnote for future reference.
-
-text <- string | content
-  Text to be shown in-place as the link itself.
+data.pos() <- arguments
+  The last argument is used as the link name (fallback to the URL itself) and
+  the second-last one is a label set for future referencing.
 **/
 #let url(url, ..data) = {
   h(0pt)
@@ -36,30 +35,17 @@ text <- string | content
 
 
 /**
-== Commands for Package URLs
+== Package URL Command
 ```typ
-#pkg(url)
-#univ(name)
-#pip(name)
-#crate(name)
-#npm(name)
-#gh(slug)
+#comp.pkg(url)
 ```
-Generates paper-friendly links to packages from different sources/platforms using
-only essential data like its name (see `/tests/commands/links/`).
+Generates paper-friendly links to packages from its URL. 
+The package name is inferred from the last path from the URL slug (like `/path`)
+or set using curly brackets (like `/{path}/path`).
 
 url <- string
-  Package URL (used by `#pkg`). The package name is extracted if enclosed in `{}`
-  or fallback to the last `/slug` of the URL.
-
-name <- string
-  Package name as it is in the source repository/platform (used by `#pip`, 
-  `#univ`, and `#crate`).
-
-slug <- string
-  A `user/name` path, as it appears in GitHub repository paths (used by `#gh`).
+  Package URL.
 **/
-// TODO: Enable labels in #univ, #pip, #crate, #gh
 #let pkg(..data) = context {
   let data = data.pos()
   let out = ()
@@ -88,13 +74,23 @@ slug <- string
   url(..out)
 }
 
+/**
+== Callout Command
+:callout: => #comp.<name>(<capt>)
 
+Creates a customizable callout box.
+**/
 #let callout(
-  icon: "information-circle",
-  title: none,
-  fill: gray.lighten(85%),
-  fill-text: auto,
-  body,
+  icon: "information-circle", /// <- string
+    /// Icon name, as set by #url("https://heroicons.com/")[Heroicons]. |
+  title: none, /// <- string | content | none
+    /// Set title, if any. |
+  fill: gray.lighten(85%), /// <- color
+    /// Set background color. |
+  fill-text: auto, /// <- color
+    /// Set text color. |
+  body, /// <- content | string
+    /// The callout content.
 ) = {
   import "@preview/heroic:0.1.0": hi
   

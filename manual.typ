@@ -9,7 +9,14 @@
   package: "toolbox:0.1.0",
   license: "MIT",
   logo: image("docs/assets/manual-logo.png"),
-  from-comments: read("src/lib.typ")
+  from-comments:
+    read("src/lib.typ") +
+    read("src/sub/main.typ") +
+    read("src/sub/storage.typ") +
+    read("src/sub/comp.typ") +
+    read("src/sub/get.typ") +
+    read("src/sub/has.typ") + 
+    read("src/sub/its.typ")
 )
 
 

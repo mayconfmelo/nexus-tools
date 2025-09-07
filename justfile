@@ -52,6 +52,7 @@ spell:
 init:
   typst init '@preview/{{name}}:{{version}}' dev/{{name}}
 
+
 # frequent dev commands.
 [private]
 dev:
@@ -59,7 +60,6 @@ dev:
   @just example
   @just doc
   @just test
-  
   
 # release a new package version.
 [private]
