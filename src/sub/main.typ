@@ -63,14 +63,15 @@ Panics if two values are set for the same thing, like `data.pos().at(0)` and als
 == Default Command
 :default:
 
-Substitute the original defaults for custom ones, allowing to set new defaults
-that can be easily changed using `set` rules.
+Allows to substitute the original defaults for custom ones, allowing to set new
+defaults that can be easily changed using `set` rules — for example, change
+default font from _Libertinus Serif_ to _Comic Sans_.#footnote[Sorry, designers.]
 **/
 #let default(
   when: false, /// <- boolean
     /** Test whether the original default is currently being used. Allow to set
     custom defaults when it returns `true`. |**/
-  value: none, /// <- dictionary | any
+  value: (:), /// <- dictionary | any
     /// Custom default to be returned. Generally a dictionary with option name and value. |
   original, /// <- boolean
     /// Use original defaults instead of the custom ones. |
@@ -78,3 +79,7 @@ that can be easily changed using `set` rules.
   if when and not original {return value}
   else {arguments()}
 }
+/**
+This command is commonly used inside `set` rules, and might require `#context`
+to access some data for `#default(when)` test.
+**/

@@ -4,7 +4,7 @@
 #import "preview/toolbox:0.1.0": storage
 ```
 
-== This Variable
+== This Value
 ```typ
 #storage.this
 ```

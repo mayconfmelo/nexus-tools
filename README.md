@@ -32,8 +32,8 @@ my other projects' shared features.
 
 - [Official manual](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/manual.pdf)
 - [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/example.pdf)
-- [Example Typst code](https://github.com/mayconfmelo/toolbox/blob/0.1.0/template/main.typ)
-- [Changelog](https://github.com/mayconfmelo/toolbox/blob/main/changelog.md)
+- [Example Typst code](https://github.com/mayconfmelo/toolbox/blob/0.1.0/docs/assets/example.typ)
+- [Changelog](https://github.com/mayconfmelo/toolbox/refs/tags/0.1.0/changelog.md)
 - [Development setup](https://github.com/mayconfmelo/toolbox/blob/main/docs/dev.md)
 
 
@@ -41,11 +41,11 @@ my other projects' shared features.
 
 - `#date()` creates a `datetime` using positional and/or named arguments
 - `#default()` substitutes default Typst defaults
-- `#storage` module manages a database
+- `#storage` module manages a database to store anything
   - `this` access and change the database state
   - `add()` inserts a value, replacing or appending existing ones
-  - `remove()` delete a value, replacing or appending existing ones
-  - `get()` retrieves a value, or the entire database
+  - `remove()` delete a value
+  - `get()` retrieves a value or the entire database
   - `final()` retrieves the final database state
   - `reset()` substitutes the entire database
 - `#comp` module provides visual components
