@@ -1,6 +1,5 @@
 #import "/src/lib.typ": its
 #import "/src/lib.typ": get
-#import get: null
 #set page(width: auto, height: auto)
 
 // Check none value
@@ -8,8 +7,8 @@
 #assert( its.none-val([]) != true )
 
 // Check null value
-#assert( its.null(null) )
-#assert( its.none-val("") != true )
+#assert( its.null(get.null) )
+#assert( its.null("") != true )
 
 // Check empty value
 #assert( its.empty("") )
