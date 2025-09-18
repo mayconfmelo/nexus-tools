@@ -69,17 +69,34 @@ default font from _Libertinus Serif_ to _Comic Sans_.#footnote[Sorry, designers.
 **/
 #let default(
   when: false, /// <- boolean
-    /** Test whether the original default is currently being used. Allow to set
-    custom defaults when it returns `true`. |**/
+    /// Test whether the original default is currently being used. |
   value: (:), /// <- dictionary | any
-    /// Custom default to be returned. Generally a dictionary with option name and value. |
+    /// Custom default, set when the original default is being used. |
+  otherwise: (:), /// <- dictionary | any
+    /// Alternative value, set when the original default is not being used. |
   original, /// <- boolean
     /// Use original defaults instead of the custom ones. |
 ) = {
+  /**
+  This command is commonly used inside `set` rules, and might require `#context`
+  to access some defaults data for `#default(when)` test.
+  **/
   if when and not original {return value}
-  else {arguments()}
+  else {return otherwise}
 }
+
+
 /**
-This command is commonly used inside `set` rules, and might require `#context`
-to access some data for `#default(when)` test.
+= Content to String Command
+:content2str:
+Convert simple text content into string.
+
+data <- content
+  Content data.
 **/
+#let content2str(data) = {
+  if type(data) != content {data = [#data]}
+  
+  if data.at("text", default: none) != none {return data.text}
+  else {panic(repr(data) + " can't be converted to string")}
+}
