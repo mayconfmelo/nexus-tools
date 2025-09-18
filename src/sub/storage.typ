@@ -1,16 +1,33 @@
+#let this = state("toolbox-data-storage", (:))
+
 /**
 = Storage Namespace
 ```typ
 #import "preview/toolbox:0.1.0": storage
 ```
 
-== This Value
+== Set Namespace Command
 ```typ
-#storage.this
+#storage.namespace(name)
 ```
-Allows to directly access the storage state.
+Set the namespace used as storage. Namespaces allows multiple packages/templates
+to use `#storage` at the same time, each accessing its own proper space.
+
+name <- string
+  Namespace name.
 **/
-#let this = state("toolbox-data-storage", (:))
+#let namespace(name) = {
+  assert.ne(
+    name, "namespace",
+    message: "Cannot use reserved 'namespace' name"
+  )
+  
+  this.update(curr => {
+    curr.insert("namespace", name)
+    curr
+  })
+}
+
 
 /**
 == Add Command
@@ -29,10 +46,13 @@ Insert a new entry in the storage.
   this.update(curr => {
     if curr == none {curr = (:)}
     
+    let ns = curr.at("namespace", default: "std")
     let value = value
     
+    if curr.at(ns, default: none) == none {curr.insert(ns, (:))}
+    
     if append {
-      let val = curr.at(key, default: ())
+      let val = curr.at(ns).at(key, default: ())
       
       if type(val) == dictionary {
         assert.eq(
@@ -44,6 +64,7 @@ Insert a new entry in the storage.
           val.insert(key, value)
         }
       }
+      else if val == () and type(value) == dictionary {val = value}
       else {
         if type(value) != array {value = (value,)}
         if type(val) != array {val = (val,)}
@@ -54,7 +75,7 @@ Insert a new entry in the storage.
       }
       value = val
     }
-    curr.insert(str(key), value)
+    curr.at(ns).insert(str(key), value)
     
     return curr
   })
@@ -74,7 +95,9 @@ key <- string
   this.update(curr => {
     if curr == none {curr = (:)}
     
-    let _ = curr.remove(str(key), default: none)
+    let ns = curr.at("namespace", default: "std")
+    
+    let _ = curr.at(ns).remove(str(key), default: none)
     
     return curr
   })
@@ -94,9 +117,14 @@ args.pos() <- arguments
 #let get(..args) = {
   let key = args.pos().at(0, default: none)
   let default = args.pos().at(1, default: none)
+  let ns = this.get().at("namespace", default: "std")
   
-  if key != none {return this.get().at(str(key), default: default)}
-  else {return this.get()}
+  if key != none {
+    return this.get()
+      .at(ns, default: (:))
+      .at(str(key), default: default)
+  }
+  else {return this.get().at(ns)}
 }
 
 /**
@@ -105,7 +133,14 @@ args.pos() <- arguments
 
 The final storage state. Returns the whole storage database.
 **/
-#let final() = {return this.final()}
+#let final(..args) = {
+  let key = args.pos().at(0, default: none)
+  let default = args.pos().at(1, default: none)
+  let ns = this.get().at("namespace", default: "std")
+  
+  if key != none {return this.final().at(ns).at(str(key), default: default)}
+  else {return this.final().at(ns)}
+}
 
 /**
 == Reset Command
@@ -117,4 +152,11 @@ other storage commands can only be used if it is a `dictionary` value.
 data <- dictionary | any
   New storage database value.
 **/
-#let reset(data) = {this.update(data)}
+#let reset(data) = {
+  this.update(curr => {
+    let ns = curr.at("namespace", default: "std")
+    
+    curr.at(ns) = data
+    curr
+  })
+}
