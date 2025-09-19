@@ -41,14 +41,14 @@ my other projects' shared features.
 
 - `#date()` creates a `datetime` using positional and/or named arguments
 - `#default()` substitutes default Typst defaults
-- `#storage` module manages a database to store anything
-  - `this` access and change the database state
+- `#storage` manages a database to store anything
+  - `namespace()` sets a separated space used as storage
   - `add()` inserts a value, replacing or appending existing ones
   - `remove()` delete a value
   - `get()` retrieves a value or the entire database
   - `final()` retrieves the final database state
   - `reset()` substitutes the entire database
-- `#comp` module provides visual components
+- `#comp` provides visual components
   - `url()` adds a paper-friendly link (with footnote)
   - `pkg()` adds a general code package URL
   - `callout()` adds an customizable callout box
@@ -61,14 +61,15 @@ my other projects' shared features.
   - `value()` checks if a dictionary has a given value
   - `item()` checks if a array has a given item value
 - `#its` provides specific tests
-  - `none-val()` checks if a value `none`
+  - `none-val()` checks if a value is `none`
   - `null()` checks if a value is `#get.null`
-  - `empty()` checks if a value is a empty
-  - `context-val()` checks if a value is a `context()`
-  - `sequence()` checks if value function is `sequence`
-  - `space()` checks if value function is `space`
-  - `func()` checks if value function is one of the given functions
-  - `type()` checks if value type is one of the given types
+  - `empty()` checks if a value is empty
+  - `context-val()` checks if a value is a opaque `context()`
+  - `sequence()` checks if content function type is `sequence`
+  - `space()` checks if content function type is `space`
+  - `func()` checks if content function type is one of the given ones
+  - `type()` checks if value type is one of the given ones
+
 
 ### Internal Structure
 
