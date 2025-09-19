@@ -38,16 +38,20 @@ Insert a new entry in the storage.
 #let add(
   key, /// <- string
     /// Storage entry name.
-  value,
+  value, /// <- ant
     /// Value to be stored.
-  append: false,
+  append: false, /// <- boolean
     /// Append new value if entry already exists, otherwise replaces it.
+  namespace: auto, /// <- string
+    /// Add to the given namespace.
 ) = {
   this.update(curr => {
     if curr == none {curr = (:)}
     
-    let ns = curr.at("namespace", default: "std")
     let value = value
+    let ns = namespace
+    
+    if ns == auto {ns = curr.at("namespace", default: "std")}
     
     if curr.at(ns, default: none) == none {curr.insert(ns, (:))}
     
@@ -87,15 +91,19 @@ Insert a new entry in the storage.
 :remove: => #storage.<name>(<capt>)
 
 Removes an existing entry from storage.
-
-key <- string
-  Storage entry name.
 **/
-#let remove(key) = {
+#let remove(
+  key, /// <- string
+    /// Storage entry name.
+  namespace: auto, /// <- string
+    /// Remove from the given namespace.
+) = {
   this.update(curr => {
     if curr == none {curr = (:)}
     
-    let ns = curr.at("namespace", default: "std")
+    let ns = namespace
+    
+    if ns == auto {ns = curr.at("namespace", default: "std")}
     
     let _ = curr.at(ns).remove(str(key), default: none)
     
@@ -108,23 +116,26 @@ key <- string
 :get: => #storage.<name>(<capt>)
 
 Retrieves a value from storage, or the entire database itself.
-
-args.pos() <- arguments
-  The first argument is the storage entry and the second one a default value,
-  returned if the storage entry is not found. If no argument is set, the whole
-  storage database is returned.
 **/
-#let get(..args) = {
+#let get(
+  ..args, /// <- arguments
+    /** The first argument is the storage entry and the second one a default value,
+    returned if the storage entry is not found. If no argument is set, the whole
+    storage database is returned. |**/
+  namespace: auto, /// <- string
+    /// Get from the given namespace.
+) = {
   let key = args.pos().at(0, default: none)
   let default = args.pos().at(1, default: none)
-  let ns = this.get().at("namespace", default: "std")
+  let ns = namespace
   
-  if key != none {
-    return this.get()
-      .at(ns, default: (:))
-      .at(str(key), default: default)
-  }
-  else {return this.get().at(ns)}
+  if ns == auto {ns = this.get().at("namespace", default: "std")}
+  
+  let stored = this.get().at(ns, default: (:))
+  
+  if key != none {stored = stored.at(str(key), default: default)}
+  
+  return stored
 }
 
 /**
@@ -133,13 +144,25 @@ args.pos() <- arguments
 
 The final storage state. Returns the whole storage database.
 **/
-#let final(..args) = {
+#let final(
+    ..args, /// <- arguments
+    /** The first argument is the storage entry and the second one a default value,
+    returned if the storage entry is not found. If no argument is set, the whole
+    storage database is returned. |**/
+  namespace: auto, /// <- string
+    /// Final state from the given namespace.
+) = {
   let key = args.pos().at(0, default: none)
   let default = args.pos().at(1, default: none)
-  let ns = this.get().at("namespace", default: "std")
+  let ns = namespace
   
-  if key != none {return this.final().at(ns).at(str(key), default: default)}
-  else {return this.final().at(ns)}
+  if ns == auto {ns = this.get().at("namespace", default: "std")}
+  
+  let stored = this.final().at(ns, default: (:))
+  
+  if key != none {stored = stored.at(str(key), default: default)}
+  
+  return stored
 }
 
 /**
@@ -148,13 +171,17 @@ The final storage state. Returns the whole storage database.
 
 Set a new value for the entire storage database. While it can be of any type, the
 other storage commands can only be used if it is a `dictionary` value.
-
-data <- dictionary | any
-  New storage database value.
 **/
-#let reset(data) = {
+#let reset(
+  data, /// <- dictionary | any
+    /// New storage database value.
+  namespace: auto, /// <- string
+    /// Reset the given namespace.
+) = {
   this.update(curr => {
-    let ns = curr.at("namespace", default: "std")
+    let ns = namespace
+    
+    if ns == auto {ns = curr.at("namespace", default: "std")}
     
     curr.at(ns) = data
     curr
