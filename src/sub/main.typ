@@ -94,9 +94,30 @@ Convert simple text content into string.
 data <- content
   Content data.
 **/
+// TODO: try to convert sequences
 #let content2str(data) = {
   if type(data) != content {data = [#data]}
   
   if data.at("text", default: none) != none {return data.text}
-  else {panic(repr(data) + " can't be converted to string")}
+  else {
+    let data = data.at("children", default: (data.at("body", default: data),))
+    let output = ""
+    
+    for elem in data {
+      elem = elem.at("text", default: elem.at("body", default: elem))
+      
+      if type(elem) != str {
+        if elem.at("children", default: none) != none {elem = content2str(elem)}
+        else if elem.func() == linebreak {elem = "\n"}
+        else if elem == [ ] {elem = " "}
+      }
+      
+      if type(elem) == str {output += elem}
+      else if elem.at("text", default: none) != none {output += elem.text}
+    }
+    
+    assert.ne(output, "", message: repr(data) + " can't be converted to string")
+    
+    return output
+  }
 }
