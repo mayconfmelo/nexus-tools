@@ -13,7 +13,7 @@
 Set the namespace used as storage. Namespaces allows multiple packages/templates
 to use `#storage` at the same time, each accessing its own proper space.
 
-name <- string
+name <- string <required>
   Namespace name.
 **/
 #let namespace(name) = {
@@ -37,13 +37,13 @@ Insert a new entry in the storage.
 **/
 #let add(
   key, /// <- string
-    /// Storage entry name.
+    /// Storage entry name. |
   value, /// <- ant
-    /// Value to be stored.
+    /// Value to be stored. |
   append: false, /// <- boolean
-    /// Append new value if entry already exists, otherwise replaces it.
+    /// Append new value if entry already exists, otherwise replaces it. |
   namespace: auto, /// <- string
-    /// Add to the given namespace.
+    /// Add to the given namespace. |
 ) = {
   this.update(curr => {
     if curr == none {curr = (:)}
@@ -79,9 +79,9 @@ Removes an existing entry from storage.
 **/
 #let remove(
   key, /// <- string
-    /// Storage entry name.
+    /// Storage entry name. |
   namespace: auto, /// <- string
-    /// Remove from the given namespace.
+    /// Remove from the given namespace. |
 ) = {
   this.update(curr => {
     if curr == none {curr = (:)}
@@ -108,7 +108,7 @@ Retrieves a value from storage, or the entire database itself.
     returned if the storage entry is not found. If no argument is set, the whole
     storage database is returned. |**/
   namespace: auto, /// <- string
-    /// Get from the given namespace.
+    /// Get from the given namespace. |
 ) = {
   let key = args.pos().at(0, default: none)
   let default = args.pos().at(1, default: none)
@@ -135,7 +135,7 @@ The final storage state. Returns the whole storage database.
     returned if the storage entry is not found. If no argument is set, the whole
     storage database is returned. |**/
   namespace: auto, /// <- string
-    /// Final state from the given namespace.
+    /// Final state from the given namespace. |
 ) = {
   let key = args.pos().at(0, default: none)
   let default = args.pos().at(1, default: none)
@@ -159,9 +159,9 @@ other storage commands can only be used if it is a `dictionary` value.
 **/
 #let reset(
   data, /// <- dictionary | any
-    /// New storage database value.
+    /// New storage database value. |
   namespace: auto, /// <- string
-    /// Reset the given namespace.
+    /// Reset the given namespace. |
 ) = {
   this.update(curr => {
     let ns = namespace
