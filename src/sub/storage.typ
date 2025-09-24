@@ -58,27 +58,12 @@ Insert a new entry in the storage.
     if append {
       let val = curr.at(ns).at(key, default: ())
       
-      if type(val) == dictionary {
-        assert.eq(
-          type(value), dictionary,
-          message: "Cannot insert " + repr(value) + " in " + repr(val)
-        )
-        
-        for (key, value) in value.pairs() {
-          val.insert(key, value)
-        }
-      }
-      else if val == () and type(value) == dictionary {val = value}
-      else {
-        if type(value) != array {value = (value,)}
-        if type(val) != array {val = (val,)}
-        
-        for item in value {
-          val.push(item)
-        }
-      }
-      value = val
+      if not (dictionary, array).contains(type(val)) {val = (val,)}
+      if not (dictionary, array).contains(type(value)) {value = (value,)}
+      
+      value = val + value
     }
+    
     curr.at(ns).insert(str(key), value)
     
     return curr
