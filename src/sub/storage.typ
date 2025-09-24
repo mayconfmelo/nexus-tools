@@ -56,12 +56,14 @@ Insert a new entry in the storage.
     if curr.at(ns, default: none) == none {curr.insert(ns, (:))}
     
     if append {
-      let val = curr.at(ns).at(key, default: ())
+      let stored = curr
+        .at(ns)
+        .at(key, default: if type(value) == dictionary {(:)} else {()})
       
-      if not (dictionary, array).contains(type(val)) {val = (val,)}
+      if not (dictionary, array).contains(type(stored)) {stored = (stored,)}
       if not (dictionary, array).contains(type(value)) {value = (value,)}
       
-      value = val + value
+      value = stored + value
     }
     
     curr.at(ns).insert(str(key), value)
