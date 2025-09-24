@@ -107,13 +107,17 @@ data <- content
       elem = elem.at("text", default: elem.at("body", default: elem))
       
       if type(elem) != str {
+        if elem.at("text", default: none) != none {
+          output += elem.text
+          continue
+        }
+        
         if elem.at("children", default: none) != none {elem = content2str(elem)}
         else if elem.func() == linebreak {elem = "\n"}
         else if elem == [ ] {elem = " "}
       }
       
       if type(elem) == str {output += elem}
-      else if elem.at("text", default: none) != none {output += elem.text}
     }
     
     assert.ne(output, "", message: repr(data) + " can't be converted to string")
