@@ -24,7 +24,13 @@ fi
 if [[ ! "${VERSION}" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
   echo "Invalid version: ${VERSION}."
   echo "Must be a semantic version"
-  exit 1
+  exit 2
+fi
+
+# Check if tag already exists
+if git rev-parse -q --verify "refs/tags/${VERSION}" >/dev/null; then
+  echo "Error: The ${VERSION} tag already exists"
+  exit 3
 fi
 
 cd "${PROJECT_ROOT}"

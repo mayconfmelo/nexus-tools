@@ -3,7 +3,7 @@
 /**
 = Storage Namespace
 ```typ
-#import "preview/toolbox:0.1.0": storage
+#import "preview/toolbox:0.0.1": storage
 ```
 
 == Set Namespace Command

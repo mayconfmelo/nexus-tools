@@ -1,7 +1,7 @@
 /**
 = Main Namespace
 ```typ
-#import "@preview/toolbox:0.1.0"
+#import "@preview/toolbox:0.0.1"
 ```
 
 == Date Command

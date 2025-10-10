@@ -1,4 +1,4 @@
-#import "@preview/toolbox:0.1.0"
+#import "@preview/toolbox:0.0.1"
 #set page(width: 15cm, height: auto)
 
 // Visualize code and evaluate result

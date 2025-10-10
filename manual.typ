@@ -6,7 +6,7 @@
   title: "Developer's Toolbox",
   description: "",
   authors: "Maycon F. Melo <@mayconfmelo>",
-  package: "toolbox:0.1.0",
+  package: "toolbox:0.0.1",
   license: "MIT",
   logo: image("docs/assets/manual-logo.png"),
   from-comments:
