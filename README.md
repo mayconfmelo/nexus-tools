@@ -2,12 +2,31 @@
 
 <center>
 
+<p class="hidden">
 Implement and reutilize tools and components among projects in a easy way
+</p>
+
+<p class="hidden">
+  <a href="https://typst.app/universe/package/toolbox">
+    <img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Ftypst.app%2Funiverse%2Fpackage%2Ftoolbox&query=%2Fhtml%2Fbody%2Fdiv%2Fmain%2Fdiv%5B2%5D%2Faside%2Fsection%5B2%5D%2Fdl%2Fdd%5B3%5D&logo=typst&label=Universe&color=%23239DAE&labelColor=%23353c44" /></a>
+  <a href="https://github.com/mayconfmelo/toolbox/tree/dev/">
+    <img src="https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmayconfmelo%2Ftoolbox%2Frefs%2Fheads%2Fdev%2Ftypst.toml&query=%24.package.version&logo=github&label=Development&logoColor=%2397978e&color=%23239DAE&labelColor=%23353c44" /></a>
+</p>
+
+[![Manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/manual.pdf)
+[![Example PDF](https://img.shields.io/badge/Example-PDF-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/example.pdf)
+[![Example SRC](https://img.shields.io/badge/Example-SRC-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/toolbox/blob/0.1.0/docs/assets/example.typ)
+[![Changelog](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/toolbox/blob/main/changelog.md)
+[![Contribute](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/toolbox/blob/main/docs/contributing.md)
+
+
+<p class="hidden">
 
 [![Tests](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml)
 [![Build](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml)
 [![Spellcheck](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml)
 
+</p>
 </center>
 
 
@@ -26,15 +45,6 @@ manually rewritten each time — and therefore are hardly equal and homogeneous
 among each other, even if they do the exactly same tasks. It do not intends to be
 a full heavy-loaded general development toolbox, but a compartimentalization of
 my other projects' shared features.
-
-
-## More Information
-
-- [Official manual](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/manual.pdf)
-- [Example PDF result](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/example.pdf)
-- [Example Typst code](https://github.com/mayconfmelo/toolbox/blob/0.1.0/docs/assets/example.typ)
-- [Changelog](https://github.com/mayconfmelo/toolbox/refs/tags/0.1.0/changelog.md)
-- [Development setup](https://github.com/mayconfmelo/toolbox/blob/main/docs/dev.md)
 
 
 ## Feature List

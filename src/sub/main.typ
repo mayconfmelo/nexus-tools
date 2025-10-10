@@ -94,7 +94,6 @@ Convert simple text content into string.
 data <- content
   Content data.
 **/
-// TODO: try to convert sequences
 #let content2str(data) = {
   if type(data) != content {data = [#data]}
   

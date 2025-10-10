@@ -9,6 +9,16 @@ NAME=$(
     -ne "print \$1 if /^\s*name\s*=\s*[\"']?(.*?)[\"']?\s*$/" \
     "${PROJECT_ROOT}/typst.toml"
 )
+TYP_VERSION=$(
+  perl \
+    -ne "print \$1 if /^\s*version\s*=\s*[\"']?([^\"]*)[\"']?.*/g" \
+    "${PROJECT_ROOT}/typst.toml"
+)
+
+if [[ "${VERSION}" != "${TYP_VERSION}" ]]; then
+  echo "Version mismatch: ${TYP_VERSION} in typst.toml"
+  exit 1
+fi
 
 echo "Starting version update script. Did you already:"
 echo "1. Added changes/new features to CHANGELOG.md"
@@ -50,14 +60,4 @@ for file in ${SRC_CODE[@]}; do
 done
 
 echo "Updating version number in \"typst.toml\"..."
-perl -i -pe 's/^(\s*version\s*=\s*).*/$1"'${VERSION}'"/' "typst.toml"
-
-echo "Trying to commit and push unstaged changes, if any..."
-git add .
-git commit -m "Package version ${VERSION} released"
-git push origin main
-echo "Creating new git tag..."
-git tag -a "${VERSION}" -m "Package version updated to ${VERSION}"
-git push origin "${VERSION}"
-
-echo "New version ${VERSION} successfully released."
+perl -i -pe 's/^(\s*version\s*=\s*).*/$1"'${VERSION}'"/' typst.toml
