@@ -1,6 +1,6 @@
 # Developer's Toolbox
 
-<center>
+<div align="center">
 
 <p class="hidden">
 Implement and reutilize tools and components among projects in a easy way
@@ -27,7 +27,7 @@ Implement and reutilize tools and components among projects in a easy way
 [![Spellcheck](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml)
 
 </p>
-</center>
+</div>
 
 
 ## Quick Start
