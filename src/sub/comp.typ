@@ -5,73 +5,89 @@
 ```
 
 == URL Command
-:url: => #comp.<name>(<capt>)
+```typ
+#comp.url(target, id, text)
+```
 
 Creates a paper-friendly link, attached to a footnote containing the URL itself
 to ensure readability when printed.
 
-url <- string | label <required>
-  URL set as link and shown in footnote.
+target <- string | label <required>
+  URL used as link and footnote, or  or label referencing a previous `#url` command.
 
-data.pos() <- arguments
-  The last argument is used as the link name (fallback to the URL itself) and
-  the second-last one is a label set for future referencing.
+id <- label
+  Optional label for further reference.
+  
+text <- string | content
+  Text shown as link (fallback to the URL).
 **/
-#let url(url, ..data) = {
+#let url(target, ..args) = {
   h(0pt)
   
-  assert(
-    data.pos().len() <= 2,
-    message: "Received " + str(data.pos().len() + 1) + " arguments (expected 3)"
-  )
+  assert(args.pos().len() <= 2, message: "#url(target, id, name) only")
+  assert(args.named() == (:), message: "#url(target, id, name) only")
   
-  let note = if type(url) == str {link(url)} else {url}
-  let text = data.pos().at(-1, default: url)
-  let id = data.pos().at(-2, default: [])
+  let note = if type(target) == str {link(target)} else {target}
+  let text = args.pos().at(-1, default: target)
+  let id = args.pos().at(-2, default: none)
+  let hash
+  
+  if id != none {
+    // Store text under hash label
+    import "@preview/digestify:0.1.0": md5, bytes-to-hex
+    
+    hash = bytes-to-hex( md5(bytes(repr(id))) )
+    
+    [ #metadata(text)#label(hash) ]
+  }
+  else if type(text) == label {
+    // Retrieve hash label to obtain text
+    import "@preview/digestify:0.1.0": md5, bytes-to-hex
+    
+    hash = bytes-to-hex( md5(bytes(repr(target))) )
+    text = context query(label(hash)).first().value
+  }
 
-  link(url, emph(text))
-  [#footnote(note)#id]
+  link(target, emph(text))
+  
+  [ #footnote(note)#id ]
 }
 
 
 /**
 == Package URL Command
 ```typ
-#comp.pkg(url)
+#comp.pkg(target, id)
 ```
 Generates paper-friendly links to packages from its URL. 
 The package name is inferred from the last path from the URL slug (like `/path`)
 or set using curly brackets (like `/{path}/path`).
 
-url <- string
-  Package URL.
+target <- string | label
+  Package URL, or label referencing a previous `#pkg` command.
+  
+id <- label
+  Optional label for further reference.
 **/
-#let pkg(..data) = context {
-  let data = data.pos()
-  let out = ()
-  let target = data.remove(0)
-  let text = target
+#let pkg(target, ..args) = {
+  assert(args.pos().len() <= 1, message: "#pkg(target, id) only")
+  assert(args.named() == (:), message: "#pkg(target, id) only")
   
-  // #pkg
-  if data == () {
-    if type(target) == label {panic("#pkg(text, label) required")}
-    
-    text = target.match(regex("\{.*?\}|/[^/]*?$")).text.trim(regex("[/{}]"))
-    target = target.replace( regex("\{(.*?)\}"), m => {m.captures.at(0)} )
-  }
+  let id = args.pos().at(0, default: none)
+  let target = target
+  let text
+  
+  if type(target) == label {text = target}
   else {
-    text = data.last().trim(regex(".*?/"))
+    assert.eq(type(target), str, message: "pkg(url) must be string")
     
-    for m in target.matches(regex("\{.*?\}")) {
-      target = target.replace(m.text, data.remove(0))
-    }
+    // Extract text from target
+    text = target.match(regex("\{.*?\}|/[^/]*/?$"))
+    text = if text != none {text.text.trim(regex("[/{}]"))} else {target}
+    target = target.replace(regex("[{}]"), "")
   }
   
-  out.push(target)
-  out.push(text)
-  
-  //[#out]
-  url(..out)
+  url(target, id, text)
 }
 
 /**
@@ -90,7 +106,7 @@ Creates a highly customizable callout box.
   background: (:), /// <- color | dictionary
     /// Background style (`#block`) options. |
   body, /// <- content | string
-    /// The callout content.
+    /// The callout content. |
 ) = {
   import "@preview/heroic:0.1.0": hi
   import "assets/orig.typ"

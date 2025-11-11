@@ -1,18 +1,32 @@
 #import "/src/lib.typ": comp
 #set page(width: 15cm, height: auto)
 
-// standalone URL
+// Standalone URL
 #comp.url("https://example.com")
 
 // URL with title
-#comp.url("https://example.com")[URL]
+#comp.url("https://example.com", <example>)[URL]
+
+// URL by label
+#comp.url(<example>)
+(uses label)
 
 
-// automatic pkg URL
+#line()
+
+
+// Automatic package URL
 #comp.pkg("https://github.com/mayconfmelo/toolbox")
 
-// named pkg URL
-#comp.pkg("https://github.com/{mayconfmelo/toolbox}")
+// Named package URL
+#comp.pkg("https://github.com/{mayconfmelo/toolbox}", <toolbox>)
+
+// Package by label
+#comp.pkg(<toolbox>)
+(uses label)
+
+
+#line()
 
 
 // callout box
@@ -40,4 +54,4 @@
   ),
 )
 
-#v(2cm)
+#v(1cm)
