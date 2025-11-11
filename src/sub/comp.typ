@@ -78,34 +78,55 @@ url <- string
 == Callout Command
 :callout: => #comp.<name>(<capt>)
 
-Creates a customizable callout box.
+Creates a highly customizable callout box.
 **/
 #let callout(
   icon: "information-circle", /// <- string
     /// Icon name, as set by #url("https://heroicons.com/")[Heroicons]. |
   title: none, /// <- string | content | none
     /// Set title, if any. |
-  fill: gray.lighten(85%), /// <- color
-    /// Set background color. |
-  fill-text: auto, /// <- color
-    /// Set text color. |
+  text: (:), /// <- color | dictionary
+    /// Text (`#text`) options; the special `text.title` set title options. |
+  background: (:), /// <- color | dictionary
+    /// Background style (`#block`) options. |
   body, /// <- content | string
     /// The callout content.
 ) = {
   import "@preview/heroic:0.1.0": hi
+  import "assets/orig.typ"
+  
+  if type(text) == color {text = (fill: text)}
+  if type(background) == color {background = (fill: background)}
+  
+  let title-styling = text.remove("title", default: (:))
+  
+  assert.eq(
+    type(text), dictionary,
+    message: "#callout(text) must be dictionary"
+  )
+  assert.eq(
+    type(title-styling), dictionary,
+    message: "#callout(text.title) must be dictionary"
+  )
+  assert.eq(
+    type(background), dictionary,
+    message: "#callout(background) must be dictionary"
+  )
+  
+  set orig.text(..text)
   
   title = hi(icon, solid: false) + " " + if title != none {title + linebreak()}
-  fill-text = if fill-text == auto {()} else {(fill: fill-text)}
-  
-  set text(..fill-text)
+  title = orig.text(title, ..title-styling)
   
   pad(
     x: 1em,
     block(
       strong(title) + body,
-      fill: fill,
-      outset: (x: 1em * 0.45),
-      inset: (y: 1em * 0.45),
+      fill: gray.lighten(85%),
+      width: 100%,
+      outset: (x: 0.45em),
+      inset: (y: 0.45em),
+      ..background,
     )
   )
 }
