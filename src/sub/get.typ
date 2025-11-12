@@ -1,5 +1,5 @@
 /**
-= Get Namespace
+= Get
 ```typ
 #import "@preview/toolbox: 0.1.0": get
 ```
@@ -13,35 +13,34 @@ values, as it is truly unique and not naturally returned by anything in Typst.
 **/
 #let null() = [#sym.zws#sym.zwnj#sym.zws#sym.zwnj#sym.zws]
 
+
 /**
-== Auto Value Changer Command
+== Automatic Values
 :auto-val: => #get.<name>(<capt>)
 
-Resolve an `auto` value by replacing it by a custom one only when it is `auto`;
-otherwise the value is not changed.
+Sets a meaningful value to `auto` values only: if the origin value is automatic,
+returns the replacement; otherwise, returns the origin value unchanged.
 **/
 #let auto-val(
   origin, /// <- auto | any
-    /// Value to check if it is `auto`. |
+    /// Original value to be checked. |
   replace, /// <- any
-    /// Value to replace the origin. Ignored when it is not `auto`.
-) = {
-  if origin == auto {return replace}
-  else {return origin}
-}
+    /// Replacement for the original value. |
+) = {if origin == auto {return replace} else {return origin}}
+
 
 /**
-== Date Command
+== Date
 :date: => #get.<name>(<capt>)
 
-Create a `datetime` date from named and/or positional arguments, combined or not.
+Create a `#datetime` date from named and/or positional arguments, combined or not.
 Panics if two values are set for the same thing, like `data.pos().at(0)` and also
 `data.named().year`.
 
 ..date <- arguments <required>
   `(year, month, day)`\
-  Date data, like year, month, and day. Fallback to the current year, month 1,
-  and day 1 when not set.
+  Components of the data, as positional and/or named arguments; fallback to
+  current year, month 1, and day 1, when these components are not set.
 **/
 #let date(..date) = {
   if type(date.pos().at(0, default: "")) == datetime {return date.pos().at(0)}

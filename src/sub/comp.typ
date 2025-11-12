@@ -1,10 +1,10 @@
 /**
-= Components Namespace
+= Components
 ```typ
 #import "@preview/toolbox: 0.1.0": comp
 ```
 
-== URL Command
+== Paper-friendly URLs
 ```typ
 #comp.url(target, id, text)
 ```
@@ -28,20 +28,22 @@ text <- string | content
   assert(args.named() == (:), message: "#url(target, id, name) only")
   
   let note = if type(target) == str {link(target)} else {target}
-  let text = args.pos().at(-1, default: target)
-  let id = args.pos().at(-2, default: none)
+  let text = args.pos().last(default: target)
+  let id = args.pos().first(default: none)
   let hash
   
-  if id != none {
-    // Store text under hash label
+  // Store text under hash label
+  if type(id) == label {
     import "@preview/digestify:0.1.0": md5, bytes-to-hex
     
     hash = bytes-to-hex( md5(bytes(repr(id))) )
     
     [ #metadata(text)#label(hash) ]
   }
-  else if type(text) == label {
-    // Retrieve hash label to obtain text
+  else {id = none}
+  
+  // Retrieve hash label to obtain text
+  if type(text) == label {
     import "@preview/digestify:0.1.0": md5, bytes-to-hex
     
     hash = bytes-to-hex( md5(bytes(repr(target))) )
@@ -55,7 +57,7 @@ text <- string | content
 
 
 /**
-== Package URL Command
+== Package URLs
 ```typ
 #comp.pkg(target, id)
 ```
@@ -90,8 +92,9 @@ id <- label
   url(target, id, text)
 }
 
+
 /**
-== Callout Command
+== Callout
 :callout: => #comp.<name>(<capt>)
 
 Creates a highly customizable callout box.

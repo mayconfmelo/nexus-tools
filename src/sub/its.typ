@@ -1,10 +1,10 @@
 /**
-= It's Namespace
+= It's
 ```typ
 #import "@preview/toolbox: 0.1.0": its
 ```
 
-== None Command
+== None
 :none-val: => #its.<name>(<capt>)
 
 Check whether a value is `none`.
@@ -16,7 +16,7 @@ data <- none | any
 
 
 /**
-== Null Command
+== Null
 :null: => #its.<name>(<capt>)
 
 Check whether a value is `#get.null`.
@@ -32,7 +32,7 @@ data <- any
 
 
 /**
-== Empty Command
+== Empty
 :empty: => #its.<name>(<capt>)
 
 Check whether a value is empty: `""` or `[]` or `()` or `(:)`.
@@ -44,7 +44,7 @@ data <- any
 
 
 /**
-== Context Command
+== Context
 :empty: => #its.<name>(<capt>)
 
 Check whether a value is a `context()`.
@@ -56,22 +56,22 @@ data <- any
 
 
 /**
-== Sequence Content Command
+== Sequence of Contents
 :empty: => #its.<name>(<capt>)
 
 Check whether a value is a sequence of contents.
 
 data <- any
-  Value to be checked. 
+  Value to be checked.
 **/
 #let sequence(data) = { return data.func() == [*A* _B_].func() }
 
 
 /**
-== Space Content Command
+== Space Content
 :empty: => #its.<name>(<capt>)
 
-Check whether a value is a content witu just a space.
+Check whether a value is a content with just a space.
 
 data <- any
   Value to be checked. 
@@ -80,7 +80,7 @@ data <- any
 
 
 /**
-== Space Content Command
+== Space Function
 :empty: => #its.<name>(<capt>)
 
 Check whether a value function is one of the given ones.
@@ -92,6 +92,8 @@ values <- function | array of functions
   One or more functions.
 **/
 #let func(data, values) = {
+  assert.eq(type(data), content, message: repr(data) + " is not content")
+  
   if type(values) != array {values = (values,)}
   
   for value in values {
@@ -102,7 +104,7 @@ values <- function | array of functions
 
 
 /**
-== Type Command
+== Type
 :empty: => #its.<name>(<capt>)
 
 Check whether a value type is one of the given ones.

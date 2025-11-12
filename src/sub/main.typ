@@ -1,10 +1,10 @@
 /**
-= Main Namespace
+= Main
 ```typ
-#import "@preview/toolbox:0.0.1"
+#import "@preview/toolbox:0.1.0"
 ```
 
-== Default Command
+== Defaults
 :default:
 
 Allows to substitute the original defaults for custom ones, allowing to set new
@@ -31,7 +31,7 @@ default font from _Libertinus Serif_ to _Comic Sans_.#footnote[Sorry, designers.
 
 
 /**
-= Content to String Command
+= Content to String
 :content2str:
 Convert simple text content into string.
 

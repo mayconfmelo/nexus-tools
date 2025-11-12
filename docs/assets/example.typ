@@ -1,9 +1,9 @@
-#import "@preview/toolbox:0.0.1"
+#import "@preview/toolbox:0.1.0"
 #set page(width: 15cm, height: auto)
 
 // Visualize code and evaluate result
 #show raw.where(lang: "eg"): it => {
-  import "@preview/min-manual:0.2.1": example
+  import "@preview/min-manual:0.3.0": example
   set text(font: "libertinus serif")
   example(
     scope: dictionary(toolbox), it.text
@@ -13,23 +13,6 @@
 
 = Main
 
-== Date
-
-```eg
-#date(2025)
-```
-
-```eg
-#date(2025, 9)
-```
-
-```eg
-#date(2025, 9, 5)
-```
-
-```eg
-#date(2025, month: 9, day: 5)
-```
 
 == Default
 
@@ -43,6 +26,12 @@
   )
   Default `#text.fill` set to `red`.
 ]
+```
+
+```eg
+#repr(
+  content2str[ *Foo* #emph[Bar] Baz ]
+)
 ```
 
 
@@ -70,15 +59,27 @@
 = Components
 
 ```eg
-#comp.url("https://example.com")[URL]
+#comp.url("eg@mail.com", <foo>)[URL]\
+#comp.url(<foo>)
 ```
 
 ```eg
-#comp.pkg("https://github.com/{mayconfmelo/toolbox}")
+#comp.pkg("https://github.com/{mayconfmelo/toolbox}", <bar>)\
+#comp.pkg(<bar>)
 ```
 
 ```eg
 #comp.callout(lorem(6))
+#comp.callout(
+  title: "Title",
+  icon: "bars-3",
+  lorem(6)
+)
+#comp.callout(
+  text: white,
+  background: blue,
+  lorem(6)
+)
 ```
 
 
@@ -86,6 +87,7 @@
 
 
 = Get
+
 
 == Null
 ```eg
@@ -97,6 +99,25 @@
 #get.auto-val(auto, 42)\
 #get.auto-val([AB], 42)
 ```
+
+== Date
+
+```eg
+#get.date(2025)
+```
+
+```eg
+#get.date(2025, 9)
+```
+
+```eg
+#get.date(2025, 9, 5)
+```
+
+```eg
+#get.date(2025, month: 9, day: 5)
+```
+
 
 
 #pagebreak()

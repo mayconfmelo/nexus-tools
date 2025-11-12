@@ -3,7 +3,7 @@
 <div align="center">
 
 <p class="hidden">
-Implement and reutilize tools and components among projects in a easy way
+  Easily implement and reuse tools and components across projects.
 </p>
 
 <p class="hidden">
@@ -21,11 +21,12 @@ Implement and reutilize tools and components among projects in a easy way
 
 
 <p class="hidden">
-
-[![Tests](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml)
-[![Build](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml)
-[![Spellcheck](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg)](https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml)
-
+  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml">
+    <img alt="Tests" src="https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml">
+    <img alt="Build" src="https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml">
+    <img alt="Spellcheck" src="https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg" /></a>
 </p>
 </div>
 
@@ -38,47 +39,47 @@ Implement and reutilize tools and components among projects in a easy way
 
 ## Description
 
-Easily implement frequently-used code through multiple projects. This package
-was created as a development companion for my other Typst projects: it contains
-basic code and structures that often appear in multiple projects and must be
-manually rewritten each time — and therefore are hardly equal and homogeneous
-among each other, even if they do the exactly same tasks. It do not intends to be
-a full heavy-loaded general development toolbox, but a compartimentalization of
-my other projects' shared features.
+Easily implement some frequently used code across multiple projects in a unified
+way. This package was created as part of the development of [my other Typst
+projects](https://typst.app/universe/search/?q=author%3A%22Maycon%20F.%20Melo%22);
+it contains basic code and structures that frequently appear in various projects
+and need to be manually rewritten each time — and therefore are rarely identical
+and homogeneous, even if they perform exactly the same tasks. It is not intended
+to be a full heavy-loaded development toolset, but rather a compartmentalization
+of resources shared among my other projects.
 
 
 ## Feature List
 
-- `#date()` creates a `datetime` using positional and/or named arguments
-- `#default()` substitutes default Typst defaults
-- `#storage` manages a database to store anything
-  - `namespace()` sets a separated space used as storage
-  - `add()` inserts a value, replacing or appending existing ones
-  - `remove()` delete a value
-  - `get()` retrieves a value or the entire database
-  - `final()` retrieves the final database state
-  - `reset()` substitutes the entire database
-- `#comp` provides visual components
-  - `url()` adds a paper-friendly link (with footnote)
-  - `pkg()` adds a general code package URL
-  - `callout()` adds an customizable callout box
-- `#get` expands Typst values
-  - `null` is a alternative to `none` default values
-  - `auto-val()` substitutes `auto` values
-- `#has` provides attribute checks for different types
-  - `field()` checks if a content has a given field
-  - `key()` checks if a dictionary has a given key
-  - `value()` checks if a dictionary has a given value
-  - `item()` checks if a array has a given item value
-- `#its` provides specific tests
-  - `none-val()` checks if a value is `none`
-  - `null()` checks if a value is `#get.null`
-  - `empty()` checks if a value is empty
-  - `context-val()` checks if a value is a opaque `context()`
-  - `sequence()` checks if content function type is `sequence`
-  - `space()` checks if content function type is `space`
-  - `func()` checks if content function type is one of the given ones
-  - `type()` checks if value type is one of the given ones
+- Replacement of Typst defaults by custom defaults
+- Databases to store anything
+  - Support for compartmentalization through namespaces
+  - Add, append, and remove values
+  - Retrieve individual values or whole namespace
+  - Retrieve final value status
+  - Reset namespace
+- Visual components
+  - Paper-friendly links (attached to footnotes)
+  - General package URLs
+  - Customizable callout box
+- Expands Typst values
+  - Generate `#datetime` using positional and/or named arguments
+  - Null value
+  - Replacement of `auto` values
+- Attribute checks for different types
+  - Content fields
+  - Dictionary keys
+  - Dictionary values
+  - Array items
+- Specific tests
+  - `none` values
+  - `#get.null` values
+  - Empty values
+  - `context()` values
+  - Content `sequence` values
+  - Content `space` values
+  - Content functions
+  - Value types
 
 
 ### Internal Structure

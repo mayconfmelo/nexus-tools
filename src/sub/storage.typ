@@ -1,17 +1,18 @@
 #let this = state("toolbox-data-storage", (:))
 
 /**
-= Storage Namespace
+= Storage
 ```typ
-#import "preview/toolbox:0.0.1": storage
+#import "preview/toolbox:0.1.0": storage
 ```
 
-== Set Namespace Command
+== Set Namespace
 ```typ
 #storage.namespace(name)
 ```
 Set the namespace used as storage. Namespaces allows multiple packages/templates
-to use `#storage` at the same time, each accessing its own proper space.
+to use `#storage` at the same time, each accessing its own proper space. This
+changes where data is stored globally, use with caution.
 
 name <- string <required>
   Namespace name.
@@ -30,7 +31,7 @@ name <- string <required>
 
 
 /**
-== Add Command
+== Add Data
 :add: => #storage.<name>(<capt>)
 
 Insert a new entry in the storage.
@@ -74,7 +75,7 @@ Insert a new entry in the storage.
 
 
 /**
-== Remove Command
+== Remove Data
 :remove: => #storage.<name>(<capt>)
 
 Removes an existing entry from storage.
@@ -99,7 +100,7 @@ Removes an existing entry from storage.
 }
 
 /**
-== Get Command
+== Get Data
 :get: => #storage.<name>(<capt>)
 
 Retrieves a value from storage, or the entire database itself.
@@ -126,10 +127,10 @@ Retrieves a value from storage, or the entire database itself.
 }
 
 /**
-== Final Command
+== Get Final Data
 :final: => #storage.<name>(<capt>)
 
-The final storage state. Returns the whole storage database.
+The final storage state. Returns the whole storage database for a given namespace.
 **/
 #let final(
     ..args, /// <- arguments
@@ -153,11 +154,11 @@ The final storage state. Returns the whole storage database.
 }
 
 /**
-== Reset Command
+== Reset Database
 :reset: => #storage.<name>(<capt>)
 
-Set a new value for the entire storage database. While it can be of any type, the
-other storage commands can only be used if it is a `dictionary` value.
+Set a new value for the entire storage namespace. While the new value can be of
+any type, the other storage commands can only work with `dictionary` values.
 **/
 #let reset(
   data, /// <- dictionary | any

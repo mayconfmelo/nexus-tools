@@ -1,12 +1,12 @@
 // NAME: Manual for transl
 
-#import "@preview/min-manual:0.2.1": manual, arg, univ, url
+#import "@preview/min-manual:0.3.0": manual, arg, univ, url
 
 #show: manual.with(
   title: "Developer's Toolbox",
   description: "",
   authors: "Maycon F. Melo <@mayconfmelo>",
-  package: "toolbox:0.0.1",
+  package: "toolbox:0.1.0",
   license: "MIT",
   logo: image("docs/assets/manual-logo.png"),
   from-comments:
