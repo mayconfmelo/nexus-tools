@@ -28,13 +28,17 @@ text <- string | content
   assert(args.named() == (:), message: "#url(target, id, name) only")
   
   let note = if type(target) == str {link(target)} else {target}
-  let text = args.pos().last(default: target)
   let id = args.pos().first(default: none)
+  let text = args.pos().last(default: target)
   let hash
+  
   
   // Store text under hash label
   if type(id) == label {
     import "@preview/digestify:0.1.0": md5, bytes-to-hex
+    
+    // When #url(target, id) the text = id (first and last of ..args)
+    if text == id {text = target}
     
     hash = bytes-to-hex( md5(bytes(repr(id))) )
     
@@ -43,13 +47,18 @@ text <- string | content
   else {id = none}
   
   // Retrieve hash label to obtain text
-  if type(text) == label {
+  if type(target) == label {
     import "@preview/digestify:0.1.0": md5, bytes-to-hex
-    
     hash = bytes-to-hex( md5(bytes(repr(target))) )
-    text = context query(label(hash)).first().value
+    text = context {
+      let data = query(label(hash))
+      
+      if data == () {panic("Label not found: " + repr(target))}
+      
+      data.first().value
+    }
   }
-
+  
   link(target, emph(text))
   
   [ #footnote(note)#id ]
