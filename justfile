@@ -54,13 +54,12 @@ spell correct="no":
     arg="--interactive 3 --write-changes"
   fi
   codespell $arg \
-    --skip "*.pdf,dev/*,.git/*" #-L ignored
+    --skip "*.pdf,./dev/*,.git/*,./docs/assets/manual-pt.typ,./template/*" \
     #--ignore-words-list "a,b"
 
 # init template in dev/
 init:
   typst init '@preview/{{name}}:{{version}}' dev/{{name}}
-
 
 
 # useful dev commands.
