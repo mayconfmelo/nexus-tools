@@ -1,5 +1,5 @@
 #import "/src/sub/main.typ": default
-#set page(width: auto, height: auto)
+#set page(width: auto, height: auto, margin: 0pt)
 
 #context {
   // Optional dictionary to manage #default arguments

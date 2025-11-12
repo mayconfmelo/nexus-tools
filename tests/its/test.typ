@@ -1,6 +1,6 @@
 #import "/src/lib.typ": its
 #import "/src/lib.typ": get
-#set page(width: auto, height: auto)
+#set page(width: auto, height: auto, margin: 0pt)
 
 // Check none value
 #assert( its.none-val(none) )

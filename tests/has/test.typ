@@ -1,6 +1,6 @@
 #import "/src/lib.typ": has
 #import "assets/test-module.typ"
-#set page(width: auto, height: auto)
+#set page(width: auto, height: auto, margin: 0pt)
 
 // Check if content has field
 #assert( has.field([A], "text") )

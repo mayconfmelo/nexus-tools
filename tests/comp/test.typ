@@ -1,29 +1,35 @@
 #import "/src/lib.typ": comp
-#set page(width: 15cm, height: auto)
+#set page(width: 15cm, height: auto, margin: 1em)
 
 // Standalone URL
 #comp.url("https://example.com")
 
-// URL with title
-#comp.url("https://example.com", <example>)[URL]
+// URL with text
+#comp.url("https://example.com")[URL with text]
+
+// URL with label
+#comp.url("https://example.com", <example>)[URL with label]
 
 // URL by label
 #comp.url(<example>)
-(uses label)
+(retrieved)
 
 
 #line()
 
 
-// Automatic package URL
+// Package URL with automatic text
 #comp.pkg("https://github.com/mayconfmelo/toolbox")
 
-// Named package URL
-#comp.pkg("https://github.com/{mayconfmelo/toolbox}", <toolbox>)
+// Package URL with text between {}
+#comp.pkg("https://github.com/{mayconfmelo/toolbox}")
 
-// Package by label
-#comp.pkg(<toolbox>)
-(uses label)
+// Package URL with label
+#comp.pkg("https://github.com/mayconfmelo", <author>)
+
+// Package URL by label
+#comp.pkg(<author>)
+(retrieved)
 
 
 #line()
