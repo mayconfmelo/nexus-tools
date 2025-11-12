@@ -1,5 +1,5 @@
 #import "/src/lib.typ": storage
-#set page(width: auto, height: auto)
+#set page(width: auto, height: auto, margin: 1em)
 
 // Set namespace used as storage
 #storage.namespace("storage-test")
