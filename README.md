@@ -51,40 +51,39 @@ of resources shared among my other projects.
 
 ## Feature List
 
-- Replacement of Typst defaults by custom defaults
-- Databases to store anything
-  - Support for compartmentalization through namespaces
-  - Add, append, and remove values
-  - Retrieve individual values or whole namespace
-  - Retrieve final value status
-  - Reset namespace
+- Defaults that can be overridden by _set_ rules
+- General data storage
+  - Storage compartmentalization (namespaces)
+  - Add, append, and remove data
+  - Retrieve individual data or whole namespaces
+  - Reset namespaces
 - Visual components
   - Paper-friendly links (attached to footnotes)
   - General package URLs
   - Customizable callout box
-- Expands Typst values
-  - Generate `#datetime` using positional and/or named arguments
+- Get Typst values
+  - Generate datetime using positional and/or named arguments
   - Null value
-  - Replacement of `auto` values
-- Attribute checks for different types
+  - Replacement of auto values
+- Attribute checks
   - Content fields
   - Dictionary keys
   - Dictionary values
   - Array items
 - Specific tests
-  - `none` values
-  - `#get.null` values
+  - None values
+  - Null values
   - Empty values
-  - `context()` values
-  - Content `sequence` values
-  - Content `space` values
+  - Context values
+  - Content sequences
+  - Content spaces
   - Content functions
-  - Value types
+  - Any value types
 
 
 ### Internal Structure
 
-![YAML structure](tests/representation/out/1.png)
+![YAML structure](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/heads/main/tests/representation/out/1.png)
 
 This is a YAML representation of the package internal structure and all its
 features.
