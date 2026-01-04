@@ -18,13 +18,14 @@
 
 ```eg
 #context [
-  #set text(
-    ..default(
-      when: text.fill == luma(0%),
-      value: (fill: red), false
-    )
+  #let def = default(
+    when: text.fill == luma(0%),
+    value: (fill: red), false
   )
+  #set text(..def)
   Default `#text.fill` set to `red`.
+  #set text(fill: blue)
+  Now the default was overriden.
 ]
 ```
 
@@ -41,15 +42,15 @@
 = Storage
 
 ```eg
-#storage.add("string", "foo")
-#storage.add("integer", 42)
-#storage.add("dictionary", (foo: 1, bar: 2))
-#storage.add("array", (1, 2))
+#storage.add("foo", 42)
+#storage.add("bar", (a: 1))
+#storage.add("bar", (b: 2), append: true)
+#storage.add("baz", 1)
+#storage.add("baz", 2, append: true)
+#storage.add("qux", 3)
+#storage.remove("qux")
 
-#context raw(
-  lang: "yaml",
-  yaml.encode(storage.get())
-)
+#context raw(yaml.encode(storage.get()), lang: "yaml")
 ```
 
 
