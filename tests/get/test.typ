@@ -6,7 +6,7 @@
 #assert.eq( get.auto-val(auto, 42), 42 )
 
 // non-auto value stays the same
-#assert.eq( get.auto-val("foo", 42), "foo" )
+#assert.eq( get.auto-val(1234, 42), 1234 )
 
 
 // null value tests
