@@ -17,16 +17,21 @@
 == Default
 
 ```eg
-#context [
-  #let def = default(
-    when: text.fill == luma(0%),
-    value: (fill: red), false
+#let test(description) = {
+  set text(
+    ..default(
+      when: text.fill == luma(0%),
+      value: (fill: red), false
+    )
   )
-  #set text(..def)
-  Default `#text.fill` set to `red`.
-  #set text(fill: blue)
-  Now the default was overriden.
-]
+  description
+}
+  
+#context test[Custom default.]
+  
+#set text(fill: blue)
+#context test[Default overriden.]
+
 ```
 
 ```eg
@@ -65,7 +70,8 @@
 ```
 
 ```eg
-#comp.pkg("https://github.com/{mayconfmelo/toolbox}", <bar>)\
+#comp.pkg("https://example.com/{name}/slug/")\
+#comp.pkg("https://example.com/name", <bar>)\
 #comp.pkg(<bar>)
 ```
 
