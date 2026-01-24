@@ -1,4 +1,4 @@
-#let this = state("toolbox-data-storage", (:))
+#let this = state("toolbox:general-data-storage", (:))
 
 /**
 = Storage
@@ -12,7 +12,7 @@
 ```
 Set the namespace used as storage. Namespaces allows multiple packages/templates
 to use `#storage` at the same time, each accessing its own proper space. This
-changes where data is stored globally, use with caution.
+changes where data is stored *globally*, use it with caution.
 
 name <- string <required>
   Namespace name.
@@ -42,7 +42,7 @@ Insert a new entry in the storage.
   value, /// <- ant
     /// Value to be stored. |
   append: false, /// <- boolean
-    /// Append new value if entry already exists, otherwise replaces it. |
+    /// If entry already exists, append value when `true`; replaces it when `false`. |
   namespace: auto, /// <- string
     /// Add to the given namespace. |
 ) = {
@@ -103,13 +103,16 @@ Removes an existing entry from storage.
 == Get Data
 :get: => #storage.<name>(<capt>)
 
-Retrieves a value from storage, or the entire database itself.
+Retrieves a value from storage, or the entire namespace itself.
+
+args.pos().at(0) <- string
+  Storage entry name; if not set, returns the whole namespace.
+
+args.pos().at(1) <- any
+  Default value returned when the storage entry is not found; otherwise returns `none`.
 **/
 #let get(
-  ..args, /// <- arguments
-    /** The first argument is the storage entry and the second one a default value,
-    returned if the storage entry is not found. If no argument is set, the whole
-    storage database is returned. |**/
+  ..args,
   namespace: auto, /// <- string
     /// Get from the given namespace. |
 ) = {
@@ -130,13 +133,16 @@ Retrieves a value from storage, or the entire database itself.
 == Get Final Data
 :final: => #storage.<name>(<capt>)
 
-The final storage state. Returns the whole storage database for a given namespace.
+Retrieves the final value (or namespace) state from storage.
+
+args.pos().at(0) <- string
+  Storage entry name; if not set, returns the final state for the whole namespace.
+
+args.pos().at(1) <- any
+  Default value returned when the storage entry is not found; otherwise returns `none`.
 **/
 #let final(
-    ..args, /// <- arguments
-    /** The first argument is the storage entry and the second one a default value,
-    returned if the storage entry is not found. If no argument is set, the whole
-    storage database is returned. |**/
+    ..args,
   namespace: auto, /// <- string
     /// Final state from the given namespace. |
 ) = {
@@ -162,7 +168,7 @@ any type, the other storage commands can only work with `dictionary` values.
 **/
 #let reset(
   data, /// <- dictionary | any
-    /// New storage database value. |
+    /// New namespace value. |
   namespace: auto, /// <- string
     /// Reset the given namespace. |
 ) = {

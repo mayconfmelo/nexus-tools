@@ -18,14 +18,14 @@ values, as it is truly unique and not naturally returned by anything in Typst.
 == Automatic Values
 :auto-val: => #get.<name>(<capt>)
 
-Sets a meaningful value to `auto` values only: if the origin value is automatic,
-returns the replacement; otherwise, returns the origin value unchanged.
+Sets a meaningful value to `auto` values: if a value is automatic, returns the
+replacement; otherwise, returns the value unchanged.
 **/
 #let auto-val(
   origin, /// <- auto | any
-    /// Original value to be checked. |
+    /// Value to be checked. |
   replace, /// <- any
-    /// Replacement for the original value. |
+    /// Replacement for the value if `auto`. |
 ) = {if origin == auto {return replace} else {return origin}}
 
 
@@ -34,13 +34,13 @@ returns the replacement; otherwise, returns the origin value unchanged.
 :date: => #get.<name>(<capt>)
 
 Create a `#datetime` date from named and/or positional arguments, combined or not.
-Panics if two values are set for the same thing, like `data.pos().at(0)` and also
-`data.named().year`.
+Panics if two values are set for the same data component — like a positional and
+also a named value for the year.
 
 ..date <- arguments <required>
   `(year, month, day)`\
   Components of the data, as positional and/or named arguments; fallback to
-  current year, month 1, and day 1, when these components are not set.
+  current year, month 1, and day 1 when these components are not set.
 **/
 #let date(..date) = {
   if type(date.pos().at(0, default: "")) == datetime {return date.pos().at(0)}

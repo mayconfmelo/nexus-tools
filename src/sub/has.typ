@@ -58,7 +58,7 @@ values <- string | array of strings
 
 /**
 == Value
-:key: => #has.<name>(<capt>)
+:value: => #has.<name>(<capt>)
 
 Check if dictionary or module has a given value.
 
@@ -86,7 +86,7 @@ values <- string | array
 
 /**
 == Item
-:key: => #has.<name>(<capt>)
+:item: => #has.<name>(<capt>)
 
 Check if an array has one or more given items.
 
@@ -94,7 +94,7 @@ data <- string
   The array itself.
 
 values <- string | array of strings
-  One or more field names.
+  One or more items.
 **/
 #let item(data, values) = {
   assert.eq(type(data), array, message: repr(data) + " is not array")

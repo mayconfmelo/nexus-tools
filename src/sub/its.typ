@@ -45,9 +45,9 @@ data <- any
 
 /**
 == Context
-:empty: => #its.<name>(<capt>)
+:context-val: => #its.<name>(<capt>)
 
-Check whether a value is a `context()`.
+Check whether a value is a `#context()`.
 
 data <- any
   Value to be checked.
@@ -57,7 +57,7 @@ data <- any
 
 /**
 == Sequence of Contents
-:empty: => #its.<name>(<capt>)
+:sequence: => #its.<name>(<capt>)
 
 Check whether a value is a sequence of contents.
 
@@ -69,7 +69,7 @@ data <- any
 
 /**
 == Space Content
-:empty: => #its.<name>(<capt>)
+:space: => #its.<name>(<capt>)
 
 Check whether a value is a content with just a space.
 
@@ -80,8 +80,8 @@ data <- any
 
 
 /**
-== Space Function
-:empty: => #its.<name>(<capt>)
+== Function
+:func: => #its.<name>(<capt>)
 
 Check whether a value function is one of the given ones.
 
@@ -105,7 +105,7 @@ values <- function | array of functions
 
 /**
 == Type
-:empty: => #its.<name>(<capt>)
+:type: => #its.<name>(<capt>)
 
 Check whether a value type is one of the given ones.
 

@@ -13,7 +13,7 @@ Creates a paper-friendly link, attached to a footnote containing the URL itself
 to ensure readability when printed.
 
 target <- string | label <required>
-  URL used as link and footnote, or  or label referencing a previous `#url` command.
+  URL used as link and footnote, or label referencing a previous `#url` command.
 
 id <- label
   Optional label for further reference.
@@ -22,7 +22,7 @@ text <- string | content
   Text shown as link (fallback to the URL).
 **/
 #let url(target, ..args) = {
-  h(0pt)
+  h(0pt, weak: true)
   
   assert(args.pos().len() <= 2, message: "#url(target, id, name) only")
   assert(args.named() == (:), message: "#url(target, id, name) only")
@@ -70,12 +70,12 @@ text <- string | content
 ```typ
 #comp.pkg(target, id)
 ```
-Generates paper-friendly links to packages from its URL. 
-The package name is inferred from the last path from the URL slug (like `/path`)
-or set using curly brackets (like `/{path}/path`).
+Generates paper-friendly links for general package/library repositories.
 
 target <- string | label
-  Package URL, or label referencing a previous `#pkg` command.
+  `"https://example.com/name"`\ `"https://example.com/{name}/slug/"`\
+  Package URL, or label referencing a previous `#pkg` command. The package name
+  is inferred from the last URL slug or retrieved from curly brackets.
   
 id <- label
   Optional label for further reference.
@@ -112,13 +112,12 @@ Creates a highly customizable callout box.
   icon: "information-circle", /// <- string
     /// Icon name, as set by #url("https://heroicons.com/")[Heroicons]. |
   title: none, /// <- string | content | none
-    /// Set title, if any. |
+    /// Title, if any. |
   text: (:), /// <- color | dictionary
-    /// Text (`#text`) options; the special `text.title` set title options. |
+    /// `#text` options (the special `#text.title` is used for title). |
   background: (:), /// <- color | dictionary
-    /// Background style (`#block`) options. |
-  body, /// <- content | string
-    /// The callout content. |
+    /// `#block` options. |
+  body,
 ) = {
   import "@preview/heroic:0.1.0": hi
   import "assets/orig.typ"
