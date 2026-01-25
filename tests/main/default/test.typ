@@ -42,7 +42,7 @@
   context assert.eq(rect.fill, red)
   
   set outline(
-    // Overriden: Set #outline.indent as 12pt when default
+    // Overridden: Set #outline.indent as 12pt when default
     ..default(
       when: outline.indent == auto,  // false (line 4)
       value: (outline: 12pt),

@@ -30,7 +30,7 @@
 #context test[Custom default.]
   
 #set text(fill: blue)
-#context test[Default overriden.]
+#context test[Default overridden.]
 
 ```
 
