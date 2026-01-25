@@ -3,7 +3,7 @@
 
 // Visualize code and evaluate result
 #show raw.where(lang: "eg"): it => {
-  import "@preview/min-manual:0.3.0": example
+  import "@preview/min-manual:0.2.1": example
   set text(font: "libertinus serif")
   example(
     scope: dictionary(toolbox), it.text
