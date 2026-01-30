@@ -1,10 +1,10 @@
 #import "@preview/min-manual:0.3.0": manual, arg, univ, url
 
 #show: manual.with(
-  title: "Developer's Toolbox",
+  title: "Nexus Tools",
   description: "",
   authors: "Maycon F. Melo <@mayconfmelo>",
-  package: "toolbox:0.1.0",
+  package: "nexus-tools:0.1.0",
   license: "MIT",
   logo: image("docs/assets/manual-logo.png"),
   from-comments:

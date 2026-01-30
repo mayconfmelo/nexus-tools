@@ -1,4 +1,4 @@
-# Developer's Toolbox
+# Nexus Tools
 
 <div align="center">
 
@@ -7,26 +7,26 @@
 </p>
 
 <p class="hidden">
-  <a href="https://typst.app/universe/package/toolbox">
-    <img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Ftypst.app%2Funiverse%2Fpackage%2Ftoolbox&query=%2Fhtml%2Fbody%2Fdiv%2Fmain%2Fdiv%5B2%5D%2Faside%2Fsection%5B2%5D%2Fdl%2Fdd%5B3%5D&logo=typst&label=Universe&color=%23239DAE&labelColor=%23353c44" /></a>
-  <a href="https://github.com/mayconfmelo/toolbox/tree/dev/">
-    <img src="https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmayconfmelo%2Ftoolbox%2Frefs%2Fheads%2Fdev%2Ftypst.toml&query=%24.package.version&logo=github&label=Development&logoColor=%2397978e&color=%23239DAE&labelColor=%23353c44" /></a>
+  <a href="https://typst.app/universe/package/nexus-tools">
+    <img src="https://img.shields.io/badge/dynamic/xml?url=https%3A%2F%2Ftypst.app%2Funiverse%2Fpackage%2Fnexus-tools&query=%2Fhtml%2Fbody%2Fdiv%2Fmain%2Fdiv%5B2%5D%2Faside%2Fsection%5B2%5D%2Fdl%2Fdd%5B3%5D&logo=typst&label=Universe&color=%23239DAE&labelColor=%23353c44" /></a>
+  <a href="https://github.com/mayconfmelo/nexus-tools/tree/dev/">
+    <img src="https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmayconfmelo%2Fnexus-tools%2Frefs%2Fheads%2Fdev%2Ftypst.toml&query=%24.package.version&logo=github&label=Development&logoColor=%2397978e&color=%23239DAE&labelColor=%23353c44" /></a>
 </p>
 
-[![Manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/manual.pdf)
-[![Example PDF](https://img.shields.io/badge/Example-PDF-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/tags/0.1.0/docs/example.pdf)
-[![Example SRC](https://img.shields.io/badge/Example-SRC-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/toolbox/blob/0.1.0/docs/assets/example.typ)
-[![Changelog](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/toolbox/blob/main/docs/changelog.md)
-[![Contribute](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/toolbox/blob/main/docs/contributing.md)
+[![Manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.1.0/docs/manual.pdf)
+[![Example PDF](https://img.shields.io/badge/Example-.pdf-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.1.0/docs/example.pdf)
+[![Example SRC](https://img.shields.io/badge/Example-.typ-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.1.0/docs/assets/example.typ)
+[![Changelog](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/main/docs/changelog.md)
+[![Contribute](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/main/docs/contributing.md)
 
 
 <p class="hidden">
-  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml">
-    <img alt="Tests" src="https://github.com/mayconfmelo/toolbox/actions/workflows/tests.yml/badge.svg" /></a>
-  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml">
-    <img alt="Build" src="https://github.com/mayconfmelo/toolbox/actions/workflows/build.yml/badge.svg" /></a>
-  <a href="https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml">
-    <img alt="Spellcheck" src="https://github.com/mayconfmelo/toolbox/actions/workflows/spellcheck.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/nexus-tools/actions/workflows/tests.yml">
+    <img alt="Tests" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/tests.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/nexus-tools/actions/workflows/build.yml">
+    <img alt="Build" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/build.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/nexus-tools/actions/workflows/spellcheck.yml">
+    <img alt="Spellcheck" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/spellcheck.yml/badge.svg" /></a>
 </p>
 </div>
 
@@ -34,7 +34,7 @@
 ## Quick Start
 
 ```typ
-#import "@preview/toolbox:0.1.0": *
+#import "@preview/nexus-tools:0.1.0": *
 ```
 
 ## Description
@@ -85,7 +85,7 @@ for packages.
 
 ### Internal Structure
 
-![YAML structure](https://raw.githubusercontent.com/mayconfmelo/toolbox/refs/heads/main/tests/representation/out/1.png)
+![YAML structure](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/heads/main/tests/representation/out/1.png)
 
 This is a YAML representation of the package internal structure and all its
 features.

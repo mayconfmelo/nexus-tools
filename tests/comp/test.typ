@@ -19,10 +19,10 @@
 
 
 // Package URL with automatic text
-#comp.pkg("https://github.com/mayconfmelo/toolbox")
+#comp.pkg("https://github.com/mayconfmelo/nexus-tools")
 
 // Package URL with text between {}
-#comp.pkg("https://github.com/{mayconfmelo/toolbox}")
+#comp.pkg("https://github.com/{mayconfmelo/nexus-tools}")
 
 // Package URL with label
 #comp.pkg("https://github.com/mayconfmelo", <author>)

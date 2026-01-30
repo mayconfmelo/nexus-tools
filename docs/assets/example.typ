@@ -1,4 +1,4 @@
-#import "@preview/toolbox:0.1.0"
+#import "@preview/nexus-tools:0.1.0"
 #set page(width: 15cm, height: auto)
 
 // Visualize code and evaluate result
@@ -6,7 +6,7 @@
   import "@preview/min-manual:0.2.1": example
   set text(font: "libertinus serif")
   example(
-    scope: dictionary(toolbox), it.text
+    scope: dictionary(nexus-tools), it.text
   )
 }
 
