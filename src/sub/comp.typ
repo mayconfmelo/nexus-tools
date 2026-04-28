@@ -22,8 +22,6 @@ text <- string | content
   Text shown as link (fallback to the URL).
 **/
 #let url(target, ..args) = {
-  h(0pt, weak: true)
-  
   assert(args.pos().len() <= 2, message: "#url(target, id, name) only")
   assert(args.named() == (:), message: "#url(target, id, name) only")
   
