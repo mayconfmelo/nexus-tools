@@ -32,3 +32,7 @@
   - `space()` checks if content function type is `space`
   - `func()` checks if content function type is one of the given ones
   - `type()` checks if value type is one of the given ones
+
+### 0.1.1
+
+- Added: `#date` support for arrays, dictionaries, and strings

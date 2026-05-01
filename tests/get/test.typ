@@ -44,8 +44,8 @@
 #assert.eq( dt, get.date(2025, month: 5, day: 19)       )
 
 // Parse from array, dictionary, or string instead of arguments
-#assert.eq( dt, get.date((2025, 05,19)) )
-#assert.eq( dt, get.date((year: 2025, month: 05, day: 19)) )
+#assert.eq( dt, get.date((2025, 05,19))                       )
+#assert.eq( dt, get.date((year: 2025, month: 05, day: 19))    )
 #assert.eq( dt, get.date("19/05/2025", pattern: "dd/mm/yyyy") )
 
 // Conflicting years, months, and days

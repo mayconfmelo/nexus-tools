@@ -1,6 +1,6 @@
 [package]
 name = "nexus-tools"
-version = "0.1.0"
+version = "0.1.1"
 description = "Easily implement and reuse tools and components across projects"
 authors = ["Maycon F. Melo <@mayconfmelo>"]
 license = "MIT-0"
@@ -9,7 +9,7 @@ entrypoint = "src/lib.typ"
 categories = ["scripting", "utility", "components"]
 keywords = [
   "development", "dev", "storage", "database", "components", "callout", "null",
-  "test", "default", "content2str"
+  "testing", "defaults", "content2str", "date"
 ]
 exclude = [
   "dev/", "tests/", "docs/", "scripts/", ".git", ".github", ".gitignore",

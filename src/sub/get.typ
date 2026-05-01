@@ -51,8 +51,8 @@ pattern: <- string
   
   let pos = date.pos()
   let named = date.named()
-  let named-keys = named.keys()
   let first-type = type(pos.at(0, default: 0))
+  let named-keys
   
   // TODO: implement(?) suport for array/dictionary
   if first-type == array {pos = pos.at(0)}
@@ -60,8 +60,6 @@ pattern: <- string
     named = pos.at(0)
     
     let _ = pos.remove(0)
-    
-    named-keys = named.keys()
   }
   else if first-type == str {
     let re = lower(pattern).replace(regex("(?:y+|m+|d+)"), "(\d+)")
@@ -80,9 +78,10 @@ pattern: <- string
       named.insert(value, results.at(i, default: none))
     }
     
-    pos = ()
+    let _ = pos.remove(0)
   }
-  //if type(pos.at(0, default: 0)) != int {date = arguments(..pos.at(0))}
+  
+  named-keys = named.keys()
   
   if named-keys.contains("year") and pos.len() > 0 {
     panic("Duplicated positional and named year defined")
