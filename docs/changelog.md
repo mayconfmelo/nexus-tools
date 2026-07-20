@@ -33,6 +33,8 @@
   - `func()` checks if content function type is one of the given ones
   - `type()` checks if value type is one of the given ones
 
-### 0.1.1
+### 0.2.0
 
-- Added: `#date` support for arrays, dictionaries, and strings
+- Added: `#get.relative-luminance()` of a color
+- Added: `#get.dynamic-color()` to set foreground color based on background color luminance
+- Updated: `#date` support for arrays, dictionaries, and strings

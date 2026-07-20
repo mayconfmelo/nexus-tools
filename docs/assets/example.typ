@@ -1,4 +1,4 @@
-#import "@preview/nexus-tools:0.1.0"
+#import "@preview/nexus-tools:0.2.0"
 #set page(width: 15cm, height: auto)
 
 // Visualize code and evaluate result
@@ -124,6 +124,40 @@
 ```eg
 #get.date(2025, month: 9, day: 5)
 ```
+
+== Relative luminance
+
+```eg
+#get.relative-luminance(white)
+```
+  
+```eg
+#get.relative-luminance(black)
+```
+
+```eg
+#get.relative-luminance(red)
+```
+
+== Dynamic colors
+  
+```eg
+#get.dynamic-color(white)
+```
+  
+```eg
+#get.dynamic-color(black)
+```
+  
+```eg
+#get.dynamic-color(red)
+```
+  
+```eg
+#get.dynamic-color(red.lighten(25%))
+```
+
+
 
 
 

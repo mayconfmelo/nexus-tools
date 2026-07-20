@@ -3,7 +3,7 @@
 /**
 = Storage
 ```typ
-#import "preview/nexus-tools:0.1.0": storage
+#import "preview/nexus-tools:0.2.0": storage
 ```
 
 == Set Namespace

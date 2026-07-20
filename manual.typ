@@ -4,7 +4,7 @@
   title: "Nexus Tools",
   description: "",
   authors: "Maycon F. Melo <@mayconfmelo>",
-  package: "nexus-tools:0.1.0",
+  package: "nexus-tools:0.2.0",
   license: "MIT",
   logo: image("docs/assets/manual-logo.png"),
   from-comments:

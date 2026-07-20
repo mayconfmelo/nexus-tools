@@ -117,3 +117,46 @@ pattern: <- string
     day: values.day
   )
 }
+
+
+/**
+== Relative Luminance
+:relative-luminance:
+Calculates the relative relative luminance of a color (0 is lighter and 1 is darker)
+
+color <- color
+  Color to be evaluated.
+
+`#relative-luminance()` -> float
+  The relative luminance is expressed as a floating-point number (0 is lighter and 1 is darker).
+**/
+#let relative-luminance(color) = {
+  let components = rgb(color).components().map(c => c / 100%)
+  let luminance = 0
+  
+  luminance += 0.2126 * components.at(0)
+  luminance += 0.7152 * components.at(1)
+  luminance += 0.0722 * components.at(2)
+  
+  return luminance
+}
+
+
+/**
+== Dynamic colors
+:dynamic-color: => #get.<name>(<capt>)
+
+Return a foreground color based on a background color luminance: lighter color when dark and darker color when light.
+**/
+#let dynamic-color(
+  background, /// <- color
+    /// Background color evaluated. |
+  dark: white, /// <- color
+    /// Foreground color when background is darker. |
+  light: black, /// <- color
+    /// Foreground color when background is lighter. |
+  limit: 0.55 /// <- float
+    /// Luminance limit (0 is light and 1 is dark). |
+) = {
+  if relative-luminance(background) < limit {dark} else {light}
+}
