@@ -51,19 +51,21 @@ pattern: <- string
   
   let pos = date.pos()
   let named = date.named()
-  let first-type = type(pos.at(0, default: 0))
+  let first-type = type(pos.first(default: 0))
   let named-keys
   
-  // TODO: implement(?) suport for array/dictionary
-  if first-type == array {pos = pos.at(0)}
+  if first-type == array {pos = pos.first()}
   else if first-type == dictionary {
-    named = pos.at(0)
+    named = pos.first()
     
     let _ = pos.remove(0)
   }
   else if first-type == str {
     let re = lower(pattern).replace(regex("(?:y+|m+|d+)"), "(\d+)")
-    let results = pos.first().match(regex(re)).captures.map(item => int(item))
+    let results = pos.first().match(regex(re))
+      
+    if results != none {results = results.captures.map(item => int(item))}
+    else {panic("Date '" + pos.first() + "' not in '" + pattern + "' pattern")}
     
     pattern = pattern
       .replace(regex("[^ymd]"), "")
