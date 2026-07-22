@@ -126,14 +126,16 @@ pattern: <- string
 :relative-luminance:
 Calculates the relative relative luminance of a color (0 is lighter and 1 is darker)
 
-color <- color
+colour <- color
   Color to be evaluated.
 
 `#relative-luminance()` -> float
   The relative luminance is expressed as a floating-point number (0 is lighter and 1 is darker).
 **/
-#let relative-luminance(color) = {
-  let components = rgb(color).components().map(c => c / 100%)
+#let relative-luminance(colour) = {
+  assert.eq(type(colour), color, message: "Argument must be a color")
+  
+  let components = rgb(colour).components().map(c => c / 100%)
   let luminance = 0
   
   luminance += 0.2126 * components.at(0)
@@ -160,5 +162,9 @@ Return a foreground color based on a background color luminance: lighter color w
   limit: 0.55 /// <- float
     /// Luminance limit (0 is light and 1 is dark). |
 ) = {
+  assert.eq(type(background), color, message: "Argument must be a color")
+  assert.eq(type(dark), color, message: "Dark must be a color")
+  assert.eq(type(light), color, message: "Light must be a color")
+  
   if relative-luminance(background) < limit {dark} else {light}
 }

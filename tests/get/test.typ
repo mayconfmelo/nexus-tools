@@ -38,7 +38,7 @@
 #assert.eq( dt, get.date(2025, month: 5, day: 19)       )
 
 // Parse from array, dictionary, or string instead of arguments
-#assert.eq( dt, get.date((2025, 05,19))                       )
+#assert.eq( dt, get.date((2025, 05, 19))                       )
 #assert.eq( dt, get.date((year: 2025, month: 05, day: 19))    )
 #assert.eq( dt, get.date("19/05/2025", pattern: "dd/mm/yyyy") )
 
@@ -50,6 +50,7 @@
 #assert.eq(get.relative-luminance(black), 0)
 #assert.eq(get.relative-luminance(white), 1)
 #assert.eq(get.relative-luminance(red), 0.41019534756243226)
+#assert.eq(get.relative-luminance(red.lighten(25%)), 0.5576465109407901)
 
 #assert.eq(get.dynamic-color(black), white)
 #assert.eq(get.dynamic-color(white), black)
