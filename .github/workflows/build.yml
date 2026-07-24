@@ -21,7 +21,7 @@ jobs:
       - name: Running build script
         run: just build
       - name: Archive test results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: typst-build-results
