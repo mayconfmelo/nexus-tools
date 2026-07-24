@@ -36,5 +36,5 @@
 ### 0.2.0
 
 - Added: `#get.relative-luminance()` of a color
-- Added: `#get.dynamic-color()` to set foreground color based on background color luminance
+- Added: `#get.dynamic-color()` to get different colors based on the relative luminance of a color
 - Updated: `#date` support for arrays, dictionaries, and strings
