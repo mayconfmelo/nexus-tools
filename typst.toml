@@ -1,7 +1,7 @@
 [package]
 name = "nexus-tools"
-version = "0.2.0"
-description = "Easily implement and reuse tools and components across projects"
+version = "0.3.0"
+description = "Faster and easier development using commonly used features"
 authors = ["Maycon F. Melo <@mayconfmelo>"]
 license = "MIT-0"
 repository = "https://github.com/mayconfmelo/nexus-tools"

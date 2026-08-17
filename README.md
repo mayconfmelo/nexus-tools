@@ -3,7 +3,7 @@
 <div align="center">
 
 <p class="hidden">
-  Easily implement and reuse tools and components across projects.
+  Faster and easier development using commonly used features.
 </p>
 
 <p class="hidden">
@@ -39,16 +39,15 @@
 
 ## Description
 
-Easily implement handy features from a curated collection of frequently used
-package functionality, such as data storage or custom defaults. This library was
-created as part of the development of [my other Typst projects](https://typst.app/universe/search/?q=author%3A%22Maycon%20F.%20Melo%22);
+Gain development agility by using carefully curated, useful features, such as
+data storage or custom defaults. This library was created as part of the
+development of [my other Typst projects](https://typst.app/universe/search/?q=author%3A%22Maycon%20F.%20Melo%22);
 it contains functionality shared across multiple projects that would otherwise
 need to be maintained and updated individually, but is now centralized in a
-single place. This is not intended to be a full-fledged development toolset, but
-rather a compartmentalization of shared resources.
-
-You can use this library without restrictions as a development aid, especially
-for packages.
+single place. This is not intended to be a full-fledged development toolset
+--- although someday it might end up becoming that ---, but rather a
+compartmentalization of shared resources and a repository of potentially useful
+development feature.
 
 
 ## Feature List
@@ -64,7 +63,8 @@ for packages.
   - General package URLs
   - Customizable callout box
 - Get Typst values
-  - Generate datetime using positional and/or named arguments
+  - Generate datetime using arguments, array, or dictionary
+  - Calculate time between two dates
   - Null value
   - Replacement of auto values
   - Relative luminance of a color

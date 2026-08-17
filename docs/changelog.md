@@ -33,8 +33,12 @@
   - `func()` checks if content function type is one of the given ones
   - `type()` checks if value type is one of the given ones
 
-### 0.2.0
+## 0.2.0
 
 - Added: `#get.relative-luminance()` of a color
 - Added: `#get.dynamic-color()` to get different colors based on the relative luminance of a color
 - Updated: `#date` support for arrays, dictionaries, and strings
+
+## 0.3.0
+
+- Added: `#get.date-diff()` to calculate time between two dates
