@@ -47,6 +47,11 @@
 //#get.date(2025, 5, month: 12)
 //#get.date(2025, 5, 19, day: 31)
 
+#let start = datetime(year: 2020, month: 3, day: 11)
+#let end = datetime(year: 2023, month: 5, day: 5)
+#assert.eq(get.date-diff(start, end), (years: 3, months: 1, days: 24))
+#assert.eq(get.date-diff("2020-3-11", "2023-5-5"), (years: 3, months: 1, days: 24))
+
 #assert.eq(get.relative-luminance(black), 0)
 #assert.eq(get.relative-luminance(white), 1)
 #assert.eq(get.relative-luminance(red), 0.41019534756243226)

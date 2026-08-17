@@ -1,0 +1,112 @@
+mod date {
+use chrono::{Datelike, NaiveDate};
+use minicbor::Encoder;
+use wasm_minimal_protocol::*;
+
+#[cfg(target_arch = "wasm32")]
+initiate_protocol!();
+
+#[wasm_func]
+pub fn date_difference(
+    start: &[u8],
+    end: &[u8],
+) -> Result<Vec<u8>, String> {
+    // Parse input strings.
+    let start = std::str::from_utf8(start)
+        .map_err(|_| "Start date is not valid UTF-8".to_string())?;
+
+    let end = std::str::from_utf8(end)
+        .map_err(|_| "End date is not valid UTF-8".to_string())?;
+
+    let start = NaiveDate::parse_from_str(start, "%Y-%m-%d")
+        .map_err(|e| format!("Invalid start date: {e}"))?;
+
+    let end = NaiveDate::parse_from_str(end, "%Y-%m-%d")
+        .map_err(|e| format!("Invalid end date: {e}"))?;
+
+    if end < start {
+        return Err(
+            "End date must be greater than or equal to start date"
+                .to_string()
+        );
+    }
+
+    // Calculate the calendar difference.
+    let mut years = end.year() - start.year();
+
+    let mut months =
+        end.month() as i32 - start.month() as i32;
+
+    let mut days =
+        end.day() as i32 - start.day() as i32;
+
+    // Borrow one month when the day difference is negative.
+    if days < 0 {
+        months -= 1;
+
+        let first_day_of_month =
+            NaiveDate::from_ymd_opt(
+                end.year(),
+                end.month(),
+                1,
+            )
+            .unwrap();
+
+        let last_day_of_previous_month =
+            first_day_of_month
+                .pred_opt()
+                .unwrap();
+
+        days += last_day_of_previous_month.day() as i32;
+    }
+
+    // Borrow one year when the month difference is negative.
+    if months < 0 {
+        months += 12;
+        years -= 1;
+    }
+
+    // Encode the result as a CBOR map.
+    //
+    // {
+    //     "years": 6,
+    //     "months": 3,
+    //     "days": 2
+    // }
+    let mut output = Vec::new();
+
+    {
+        let mut encoder = Encoder::new(&mut output);
+
+        encoder
+            .map(3)
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .str("years")
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .i64(years as i64)
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .str("months")
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .i64(months as i64)
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .str("days")
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+
+        encoder
+            .i64(days as i64)
+            .map_err(|e| format!("CBOR encoding error: {e}"))?;
+    }
+
+    Ok(output)
+}
+}

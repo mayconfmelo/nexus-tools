@@ -122,6 +122,37 @@ pattern: <- string
 
 
 /**
+== Date Difference
+```typ
+#date-diff(start, end)
+```
+Calculates the number of years, months, and days between two dates.
+
+start <- datetime | str
+  Initial date (string as `"yyyy-mm-dd"`).
+
+end <- datetime | str
+  Final date (string as `"yyyy-mm-dd"`).
+**/
+#let date-diff(start, end) = {
+  if type(start) == datetime {start = start.display("[year]-[month]-[day]")}
+  if type(end) == datetime {end = end.display("[year]-[month]-[day]")}
+
+  assert.eq(type(start), str, message: "Start date must be string or datetime")
+  assert.eq(type(end), str, message: "End date must be string or datetime")
+
+  let plugin = plugin("plugin.wasm")
+  
+  return cbor(
+    plugin.date_difference(
+      bytes(start),
+      bytes(end),
+    )
+  )
+}
+
+
+/**
 == Relative Luminance
 :relative-luminance:
 Returns the relative relative luminance --- something like the "amount of light" --- of a color, ranging from 0 (darkest) to 1 (lightest).
