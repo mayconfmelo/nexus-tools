@@ -1,4 +1,4 @@
-#import "@preview/nexus-tools:0.2.0"
+#import "@preview/nexus-tools:0.3.0"
 #set page(width: 15cm, height: auto)
 
 // Visualize code and evaluate result

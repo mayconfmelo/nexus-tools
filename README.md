@@ -13,11 +13,11 @@
     <img alt="GitHub development branch version" src="https://img.shields.io/badge/dynamic/toml?url=https%3A%2F%2Fraw.githubusercontent.com%2Fmayconfmelo%2Fnexus-tools%2Frefs%2Fheads%2Fdev%2Ftypst.toml&query=%24.package.version&logo=github&label=Development&logoColor=%2397978e&color=%23239DAE&labelColor=%23353c44" /></a>
 </p>
 
-[![Read the manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.2.0/docs/manual.pdf)
-[![Example PDF](https://img.shields.io/badge/Example-.pdf-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.2.0/docs/example.pdf)
-[![Example source code](https://img.shields.io/badge/Example-.typ-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.2.0/docs/assets/example.typ)
-[![Changelog file](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.2.0/docs/changelog.md)
-[![Contribute with development](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.2.0/docs/contributing.md)
+[![Read the manual](https://img.shields.io/badge/Manual-%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.3.0/docs/manual.pdf)
+[![Example PDF](https://img.shields.io/badge/Example-.pdf-%23777?labelColor=%23353c44)](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.3.0/docs/example.pdf)
+[![Example source code](https://img.shields.io/badge/Example-.typ-%23777?labelColor=%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.3.0/docs/assets/example.typ)
+[![Changelog file](https://img.shields.io/badge/Changelog-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.3.0/docs/changelog.md)
+[![Contribute with development](https://img.shields.io/badge/Contribute-%23353c44)](https://github.com/mayconfmelo/nexus-tools/blob/0.3.0/docs/contributing.md)
 
 
 <p class="hidden">
@@ -34,7 +34,7 @@
 ## Quick Start
 
 ```typ
-#import "@preview/nexus-tools:0.2.0": *
+#import "@preview/nexus-tools:0.3.0": *
 ```
 
 ## Description
@@ -87,7 +87,7 @@ development feature.
 
 ### Internal Structure
 
-![YAML module structure](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.2.0/tests/representation/out/1.png)
+![YAML module structure](https://raw.githubusercontent.com/mayconfmelo/nexus-tools/refs/tags/0.3.0/tests/representation/out/1.png)
 
 This is a YAML representation of the package internal structure and all its
 features.
