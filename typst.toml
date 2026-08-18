@@ -12,6 +12,6 @@ keywords = [
   "testing", "defaults", "content2str", "date"
 ]
 exclude = [
-  "dev/", "tests/", "docs/", "scripts/", ".git", ".github", ".gitignore",
+  "dev/", "tests/", "docs/", "scripts/", "plugin/" ".git", ".github", ".gitignore",
   "justfile", "manual.typ"
 ]
