@@ -46,3 +46,9 @@ jobs:
           git add .
           git commit -m "github-actions[bot]: added new plugin build"
           git push
+      - name: Run cargo
+        uses: actions-rs/cargo@v1
+        with:
+          use-cross: true
+          command: build
+          args: --target wasm32-unknown-unknown
