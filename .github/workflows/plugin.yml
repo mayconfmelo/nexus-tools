@@ -12,7 +12,7 @@ on:
     
 jobs:
   plugin:
-    name: Tests using tytanic (tt)
+    name: Build WASM typst plugin
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -27,7 +27,7 @@ jobs:
           toolchain: stable
           target: wasm32-unknown-unknown
           override: true
-      - name: Run cargo
+      - name: Build plugin
         run: just plugin
       - name: Check for changes
         id: git-status
@@ -46,9 +46,3 @@ jobs:
           git add .
           git commit -m "github-actions[bot]: added new plugin build"
           git push
-      - name: Run cargo
-        uses: actions-rs/cargo@v1
-        with:
-          use-cross: true
-          command: build
-          args: --target wasm32-unknown-unknown
