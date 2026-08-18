@@ -11,8 +11,7 @@ on:
 
 jobs:
   tests:
-    name: Test for ${{ matrix.typst-version.typst }} (Tytanic ${{ matrix.typst-version.tytanic }}${{ matrix.typst-version.doc && ', with docs' }})
-    runs-on: ubuntu-latest
+    name: Tests using tytanic (tt)
     steps:
       - name: Checkout
         uses: actions/checkout@v6
@@ -28,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v7
         if: always()
         with:
-          name: typst-${{ steps.setup-typst.outputs.typst-version }}-test-results
+          name: tytanic-results
           path: |
             tests/**/diff/*.png
             tests/**/out/*.png

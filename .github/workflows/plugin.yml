@@ -1,0 +1,39 @@
+name: WASM Plugin
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    - cron: '0 0 1 * *'
+  workflow_dispatch:
+    branches: [ main, dev ]
+    
+jobs:
+  plugin:
+    name: Tests using tytanic (tt)
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+      - name: Setup just
+        uses: extractions/setup-just@v4
+      - name: Install rust toolchain
+        uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+          target: wasm32-unknown-unknown
+          override: true
+      - name: Run cargo
+        run: just plugin
+      - name: Commit new push plugin build
+        run: |
+          git config --global user.name "${{ github.actor }}"
+          git config --global user.email "${{ github.actor }}@users.noreply.github.com"
+          
+          git add .
+          git commit -m 'gh: added new plugin build'
+          git push
