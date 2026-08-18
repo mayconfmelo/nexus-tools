@@ -33,10 +33,44 @@
 </div>
 
 
-## Quick Start
+## Brief Showcase
 
 ```typ
 #import "@preview/nexus-tools:0.3.0": *
+
+#let size = default(when: size == 11pt, value: 12pt, true)
+#content2str[ *Foo* #emph[Bar] Baz ]
+
+#storage.namespace("name")
+#storage.add("three", 3)
+#storage.remove("three")
+#context storage.get("three")
+#context storage.final()
+#storage.reset((:))
+
+#comp.url("https://example.com")
+#comp.pkg("https://repo.com/pkg-name")
+#comp.callout(title: "Title", lorem(50))
+
+#get.null
+#get.auto-val(auto, "Replace auto")
+#get.date(2026, 8, 18)
+#get.date-diff("2000-01-01", "2026-08-18")
+#get.relative-luminance(blue)
+#get.dynamic-color(red)
+
+#has.field([A B], "text")
+#has.key((foo: 1), "foo")
+#has.item((0, 1), 1)
+
+#its.none-val(none)
+#its.null(get.null)
+#its.empty("")
+#its.context-val(context())
+#its.sequence[*A* _B_]
+#its.space[ ]
+#its.func([*Strong*], strong)
+#its.type("String", str)
 ```
 
 ## Description
