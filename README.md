@@ -27,6 +27,8 @@
     <img alt="Build test badge" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/build.yml/badge.svg" /></a>
   <a href="https://github.com/mayconfmelo/nexus-tools/actions/workflows/spellcheck.yml">
     <img alt="Spellcheck test badge" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/spellcheck.yml/badge.svg" /></a>
+  <a href="https://github.com/mayconfmelo/nexus-tools/actions/workflows/plugin.yml">
+    <img alt="Spellcheck test badge" src="https://github.com/mayconfmelo/nexus-tools/actions/workflows/plugin.yml/badge.svg" /></a>
 </p>
 </div>
 
