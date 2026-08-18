@@ -125,6 +125,31 @@
 #get.date(2025, month: 9, day: 5)
 ```
 
+== Date difference
+
+```eg
+#get.date-diff(
+  "2020-3-11",
+  "2023-5-5"
+)
+```
+
+
+```eg
+#let start = datetime(
+  year: 2020,
+  month: 3,
+  day: 11
+)
+#let end = datetime(
+  year: 2023,
+  month: 5,
+  day: 5
+)
+#get.date-diff(start, end)
+```
+
+
 == Relative luminance
 
 ```eg
