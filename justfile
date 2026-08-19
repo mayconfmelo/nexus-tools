@@ -106,7 +106,8 @@ deploy:
   cd ../packages
   git checkout -b main
   just update
-  git checkout -b {{name}}
+  git branch {{name}}
+  git checkout {{name}}
   just delete {{name}} {{version}}
   just bring {{name}}
   git add . --sparse
