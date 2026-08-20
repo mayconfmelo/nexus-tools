@@ -1,5 +1,5 @@
 use chrono::{Datelike, NaiveDate};
-use minicbor::{Decoder, Encoder};
+use minicbor::Encoder;
 use wasm_minimal_protocol::*;
 
 #[cfg(target_arch = "wasm32")]
@@ -8,37 +8,16 @@ initiate_protocol!();
 #[wasm_func]
 /// Calculates the time between two dates.
 /// Input is CBOR-encoded datevstring (%Y-%m-%d); output CBOR-encoded vector.
-pub fn date_difference(input: &[u8]) -> Result<Vec<u8>, String> {
-    let mut decoder = Decoder::new(input);
+pub fn date_difference(start: &[u8], end: &[u8]) -> Result<Vec<u8>, String> {
+    // Parse input strings.
+    let start =
+        std::str::from_utf8(start).map_err(|_| "Start date is not valid UTF-8".to_string())?;
+    let end = std::str::from_utf8(end).map_err(|_| "End date is not valid UTF-8".to_string())?;
 
-    let len = decoder
-        .array()
-        .map_err(|e| format!("Invalid CBOR input: {e}"))?
-        .ok_or_else(|| "Expected a definite-length CBOR array".to_string())?;
-
-    if len != 2 {
-        return Err(format!("Expected a CBOR array with 2 elements, got {len}"));
-    }
-
-    let start = decoder
-        .str()
-        .map_err(|e| format!("Invalid start date in CBOR: {e}"))?
-        .to_owned();
-
-    let end = decoder
-        .str()
-        .map_err(|e| format!("Invalid end date in CBOR: {e}"))?
-        .to_owned();
-
-    if decoder.position() != input.len() {
-        return Err("Unexpected data after the two dates".to_string());
-    }
-
-    let start = NaiveDate::parse_from_str(&start, "%Y-%m-%d")
+    let start = NaiveDate::parse_from_str(start, "%Y-%m-%d")
         .map_err(|e| format!("Invalid start date: {e}"))?;
-
-    let end = NaiveDate::parse_from_str(&end, "%Y-%m-%d")
-        .map_err(|e| format!("Invalid end date: {e}"))?;
+    let end =
+        NaiveDate::parse_from_str(end, "%Y-%m-%d").map_err(|e| format!("Invalid end date: {e}"))?;
 
     if end < start {
         return Err("End date must be greater than or equal to start date".to_string());
@@ -65,6 +44,7 @@ pub fn date_difference(input: &[u8]) -> Result<Vec<u8>, String> {
         years -= 1;
     }
 
+    // Encode the result as a CBOR map.
     let mut output = Vec::new();
     let mut encoder = Encoder::new(&mut output);
 

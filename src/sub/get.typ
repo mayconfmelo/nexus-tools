@@ -141,12 +141,11 @@ end <- datetime | str
   assert.eq(type(start), str, message: "Start date must be string or datetime")
   assert.eq(type(end), str, message: "End date must be string or datetime")
 
-  let plugin = plugin("plugin.wasm")
+  let wasm = plugin("plugin.wasm")
   
   return cbor(
-    plugin.date_difference(
-      bytes(start),
-      bytes(end),
+    wasm.date_difference(
+      cbor.encode((start, end))
     )
   )
 }

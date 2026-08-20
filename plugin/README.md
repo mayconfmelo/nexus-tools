@@ -29,3 +29,7 @@ rustup target add wasm32-unknown-unknown
 cargo build --release --target wasm32-unknown-unknown
 cp target/wasm32-unknown-unknown/release/plugin.wasm .
 ```
+
+------
+
+This code was generated with the help of AI.
