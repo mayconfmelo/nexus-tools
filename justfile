@@ -1,7 +1,7 @@
 root := justfile_directory()
 name := `grep '^name' typst.toml | cut -d'"' -f2`
 version := `grep '^version' typst.toml | cut -d'"' -f2`
-example := "docs/assets/example.typ"
+example := "docs/example/main.typ"
 doc := "manual.typ"
 
 [private]
